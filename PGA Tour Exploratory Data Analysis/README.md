@@ -1,1 +1,2 @@
+# PGA Tour EDA Description:
 This exploratory data analysis (EDA) explores the raw data from all Professional Golf Association (PGA) Tour tournaments between the 2015 - 2022 seasons to discover trends and insights into the game of professional gold and which factors might influence a player's success on the tour.
