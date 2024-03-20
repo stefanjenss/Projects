@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2.0_PGA_Tour_EDA_Executive_Summary_Write_Up.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="exploratory-data-analysis-of-pga-tour-data-revealing-insights-and-patterns-within-the-game-of-golf">Exploratory Data Analysis of PGA Tour Data: Revealing Insights and Patterns within the Game of Golf</h1>
+<p><strong>Author:</strong> Stefan Jenss</p>
+<hr>
+<h2 id="project-description">Project Description</h2>
+<p>This exploratory data analysis (EDA) explores the raw data from all Professional Golf Association (PGA) Tour tournaments between the 2015 - 2022 seasons to discover trends and insights into the game of professional golf and which factors might influence a player's success on the tour.</p>
+<p><img src="./PGA_EDA_Figures/golf_stock_image.jpg" alt="Golf_Stock_Image"></p>
+<hr>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><strong>1. Introduction</strong>
+<ul>
+<li>1.1 Project Overview and the Basics of Golf
+<ul>
+<li>1.1.1 Strokes Gained Measurements</li>
+</ul>
+</li>
+<li>1.2 Personal Importance of this EDA</li>
+<li>1.3 Project Hypotheses &amp; Hunches</li>
+</ul>
+</li>
+<li><strong>2. Explaination of PGA Tour Dataset</strong>
+<ul>
+<li>2.1 Data Source</li>
+<li>2.2 Data Cleaning Process
+<ul>
+<li>2.2.3 Data Cleaning Steps</li>
+</ul>
+</li>
+<li>2.3 PGA Tour Data Dictionary</li>
+</ul>
+</li>
+<li><strong>3. PGA Tour Data Analysis Results</strong>
+<ul>
+<li>3.1 Overview of Datasets</li>
+<li>3.2 Hypothesis #1 Testing <em>(Which aspects of the game are most important)</em>
+<ul>
+<li>3.2.1 PairGrid Plot of Finishing Position vs. Strokes-Gained Metrics</li>
+<li>3.2.2 Correlation Heatmap Matrices of Finishing Position vs. Strokes Gained Metrics</li>
+</ul>
+</li>
+<li>3.3 Hypothesis #2 Testing <em>(Does experience matter? On which courses does it matter?)</em>
+<ul>
+<li>3.3.1 Side-by-Side Boxplots of Players with Different Experience Levels for 2022 Season</li>
+<li>3.3.2 Bar Graph of Total Round Played on Course Prior to Win in 2022 Season</li>
+<li>3.3.3 Bar Graph of Average Rounds Played on Course Prior to Top-5 Finish in 2022 Season</li>
+<li>3.3.4 Bar Graph of Average Rounds Played on Course Prior to Top-10 Finish in 2022 Season</li>
+</ul>
+</li>
+<li>3.4 Hypothesis #3 Testing <em>(On which courses does putting matter the most?)</em>
+<ul>
+<li>3.4.1 Bar Graph of Average &quot;Strokes Gained Putting Ratio&quot; of the Tournament Winners on Each Course</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>4. PGA Tour Data Analysis Summary</strong>
+<ul>
+<li>4.1 Overall Project Summary</li>
+<li>4.2 Challenges Faced</li>
+<li>4.3 Conclusions</li>
+<li>4.4 Possible Next Steps</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="1-introduction">1. Introduction</h2>
+<h3 id="11-project-overview-and-the-basics-of-golf">1.1 Project Overview and the Basics of Golf</h3>
+<p>I conducted an exploratory data analysis (EDA) on a raw dataset of PGA Tour Golf. The dataset covers all the rounds played by every golfer in all the tournaments held between the professional seasons of 2015 and 2022. My aim for this analysis was to gain insights into which aspects of players’ golf games most impact their performance in tournaments. Additionally, I aimed to identify characteristics of various courses on the PGA Tour schedule, such as determining which courses favor golfers with more course experience and the courses where putting plays a crucial role in contending in the tournament.</p>
+<p><em><strong><span style="color:#FFD83D">
+Note: If you have background knowledge of the game of golf, please feel free to skip to the next section at this point.
+</span></strong></em></p>
+<p>If you're not familiar with the game of golf, it's an individual sport where players use different clubs to hit a golf ball into a 4.5&quot; <strong>hole</strong>, usually placed hundreds of yards away from the starting point—or the <strong>tee box</strong>. Each time a player hits the ball with a club, it's called a <strong>stroke</strong>. The sole objective of golf is to get the ball in the hole in the least number of <strong>strokes</strong> possible. The number of <strong>strokes</strong> it takes to get the ball in the hole is compared to the <strong>par</strong> of the hole. <strong>Par</strong> is the expected number of strokes it takes for a proficient golfer to get the ball in the hole. A full <strong>round</strong> of golf has 18 holes, with each hole ranging from par 3 to 5 and the entire round usually being between par 69 and 73. If a player consistently scores the same as the course's par, they're considered a <strong>&quot;scratch&quot;</strong> or 0-handicap golfer.</p>
+<p>PGA Tour Golf tournaments are played over four consecutive days (Thursday through Sunday), and for most tournaments, there is a <strong>cut</strong> after the second round before the weekend. The <strong>cut</strong> consists of the top ~70 players advancing to the final two rounds, with the rest of the field being eliminated from the tournaments. Players who don’t make the cut don’t get to compete during the weekend and don’t earn any prize money.</p>
+<h4 id="111-strokes-gained-measures">1.1.1 Strokes Gained Measures</h4>
+<p>Like many other sports, golf generates a plethora of data regarding player performance, making it an ideal c
+andidate for data analysis. One of the gold standards for golf statistics is a measure called <strong>strokes gained</strong>. <strong>Strokes gained</strong> is a widely accepted standard in golf statistics that evaluates the number of strokes a golfer gains or loses in a specific area of their game when compared to other players of similar skill levels. For instance, on the PGA Tour, the pool of players used for comparison is those competing in the tournament. Strokes gained statistics measure various aspects of a player's game, including driving, approach shots, shots around the green, putting, and more. This statistic provides valuable insights to golfers, enabling them to identify their strengths and weaknesses and pinpoint key areas for improvement.</p>
+<p>Below is a description of each of the strokes gained measurements that will be included in this analysis:</p>
+<ul>
+<li>
+<p><strong>Strokes gained - putting</strong>: this is the measure of how many strokes a player gains or loses on the putting green. It is calculated by comparing the player’s actual number of putts to the expected number of putts based on the initial distance the player has to the hole.</p>
+</li>
+<li>
+<p><strong>Strokes gained - around the green:</strong> this is the measure of how many strokes a player gains or loses on shots that are typically within 30 years of the edge of the green. This does not include putting on the green.</p>
+</li>
+<li>
+<p><strong>Strokes gained - approaching the green:</strong> this is the measure of how many strokes a player gains or loses on shots that are not the tee shot on par 4 and 5s, and the tee shots on par 3s.</p>
+</li>
+<li>
+<p><strong>Strokes gained - off the tee:</strong> this is the measure of how many strokes a player gains or loses on shots off the tee on par 4s and 5s.</p>
+</li>
+<li>
+<p><strong>Strokes gained - tee to green:</strong> this is the measure of how many strokes a player gains or loses on all shots that were taken from the tee box until the ball reaches the green.</p>
+</li>
+</ul>
+<h3 id="12-personal-importance-of-this-eda">1.2 Personal Importance of this EDA</h3>
+<p>I choose to analyze a PGA Tour golf dataset because of my passion for the sport. I enjoy both watching and playing golf, and one of the things that fascinates me about the sport is the way it blends art and science. The game demands a great deal of skill and imagination while also allowing for thorough analysis to enhance your performance.</p>
+<h3 id="13-project-hypotheses--hunches">1.3 Project Hypotheses &amp; Hunches</h3>
+<p>I have several hypotheses for this EDA, including the following:</p>
+<p><strong>Hypothesis #1:</strong> When it comes to winning professional golf tournaments, certain aspects of a player’s game are more essential than others. Specifically, there are particular strokes gained measurements that have a more significant impact on a player’s overall performance in a tournament.</p>
+<ul>
+<li><strong>Hunch:</strong> There will be specific strokes gained measurements that are more important in predicting a player’s overall performance in a tournament. Further, the more important strokes gained measurements will be revealed to be strained gained - putting and strokes gained - approach to the green.
+<ul>
+<li><em>Strokes gained - putting</em>: Putting is a critical component of golf, and a player's score can be severely impacted by poor putting, regardless of how well they hit the ball off the tee or in the fairways. Therefore, it is anticipated that putting will be a significant factor in determining a player’s overall performance in a tournament.</li>
+<li><em>Strokes gained - approach to the green:</em> During a hole, the approach shot is one of the most important shots as it determines the distance a player will be putting to the hole. This, in turn, heavily impacts a player's chances of shooting above or below par.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Hypothesis #2:</strong> Golfers with more course experience will perform better, and there are specific courses on the PGA tour schedule that reward players with the most experience on that course.</p>
+<ul>
+<li><strong>Questions:</strong> Do players with more course experience perform better? And which courses reward experience the most? In other words, which courses do players who have played the course multiple times perform the best on?</li>
+<li><strong>Hunch:</strong> There will be specific golf courses in which players with more experience tend to excel more. Golf courses vary greatly from one another, and I believe that the more a player is familiar with the nuances of the course, the better they will perform. However, I am unable to predict which specific courses on the PGA tour schedule will favor experience the most.</li>
+</ul>
+<p><strong>Hypothesis #3:</strong> There are specific courses on the PGA tour schedule in which it is important to be “hot with the putter” (have high strokes gained - putting statistic).</p>
+<ul>
+<li><strong>Hunch:</strong> The difficulty of putting greens varies greatly from course to course, so I believe there will be courses that benefit those players who are “hot with the putter” the most. However, I am unable to predict which specific courses these will be.</li>
+</ul>
+<hr>
+<h2 id="2-explaination-of-pga-tour-dataset">2. Explaination of PGA Tour Dataset</h2>
+<h3 id="21-data-source">2.1 Data Source</h3>
+<p>The data used for the analysis was initially obtained from advancedsportsanalytics.com, which is now offline. However, the dataset is still available thanks to a Kaggle.com user who has uploaded it. The dataset can be accessed through the following link:</p>
+<p>https://www.kaggle.com/datasets/robikscube/pga-tour-golf-data-20152022</p>
+<h3 id="22-data-cleaning-process">2.2 Data Cleaning Process</h3>
+<p>Upon my first examination of the dataset, I observed that several of the earlier tournaments lacked strokes gained data. To avoid omitting important data from these tournaments in my analysis of course experience, I decided to create two separate DataFrames for my analysis. One of the DataFrames excluded tournaments without strokes gained information, while the other included a value of 0 for all missing strokes gained data. This way, I could still analyze the other relevant data from those tournaments.</p>
+<p>Below is the information from the original dataset:</p>
+<p><img src="./PGA_EDA_Figures/original_dataset_information.jpg" alt="Original_Dataset_Information"></p>
+<h4 id="223-data-cleaning-steps">2.2.3 Data Cleaning Steps</h4>
+<ol>
+<li>
+<p><strong>Dropping Empty Variables:</strong> To begin cleaning the data, I removed variables that held no valuable information. These variables were &quot;Unnamed: 2&quot;, &quot;Unnamed: 3&quot;, and &quot;Unnamed: 4&quot;. After careful inspection, I confirmed that they contained no useful information and proceeded to drop them from the dataset.</p>
+</li>
+<li>
+<p><strong>Dropping Undesired Variables:</strong> Furthermore, all variables containing DKP, FDP, and SDP information were not necessary in the final dataset. This was due to the unavailability of the advancedsportsanalytics.com website, which made it difficult for me to determine the meaning of these variables. Therefore, after examining the DKP, FDP, and SDP variables to ensure that they did not contain any valuable information, I removed them from the dataset. The variables that were removed include:</p>
+<ul>
+<li>hole_DKP, hole_FDP, and hole_SDP</li>
+<li>streak_DKP, streak_FDP, and streak_SDP</li>
+<li>finish_DKP, finish_FDP, and finish_SDP</li>
+<li>total_DKP, total_FDP, and total_SDP</li>
+</ul>
+</li>
+<li>
+<p><strong>Identifying and Changing Identifying Variables:</strong> Next, I identified all of the identifying variables and changed them to string objects. These variables included:</p>
+<ul>
+<li>Player_initial_last</li>
+<li>player</li>
+<li>player id</li>
+<li>tournament name</li>
+<li>tournament id</li>
+<li>course</li>
+<li>season</li>
+</ul>
+</li>
+<li>
+<p><strong>Addressing Missing Values in Full Dataset</strong>:</p>
+<ul>
+<li>For some of the data, players who did not receive a valid finishing position either received a ‘pos' (finishing position) value of 999.0 or NaN. To fix this issue, the .replace() function was used to replace &quot;999.0&quot; with &quot;0”. Additionally, the .fillna() function was used to replace NaN values with &quot;0&quot;.</li>
+<li>For all of the older tournaments that were missing strokes gained statistics, I still wanted to include those players' rounds in the course experience data analysis, so I changed all the &quot;NaN” strokes gained values to &quot;0.”</li>
+<li>In the dataset, there are two variables that represent the players' finishing position in the tournament: &quot;Finish&quot; and &quot;pos.&quot; The &quot;Finish&quot; variable is a string object because it contains a &quot;T” if there was a tie for that position (i.e., T20). On the other hand, the &quot;pos&quot; variable was just the numerical finishing position of the player, and this was a floating-point variable. Upon inspection of the remaining nulls, I identified that for some of the older tournaments, the &quot;Finish&quot; value was missing, while the &quot;pos&quot; value was present. Therefore, to address these nulls in the &quot;Finish&quot; variable, I used .fillna(pga_clean[’pos']) to fill the nulls with the corresponding value of the finishing position.</li>
+</ul>
+</li>
+<li>
+<p><strong>Creating New Strokes Gained DataFrame:</strong> For the data analysis involving strokes gained data, I did not want to include the tournament in which strokes gained data was missing. Therefore, I created a new strokes gained dataset. I achieved this by first identifying all the tournaments that had strokes gained data. This was done by calculating the average total strokes gains for each tournament. If a tournament had a non-zero total strokes gained average, this meant that the tournament contained strokes gained data, and I included this tournament in the list of tournaments to include in the strokes gained dataset. Finally, to create a strokes gained dataset, I simply remade the original dataset, but only included instances with tournament IDs that match those on the list of tournaments with strokes gained data, and then repeated the steps to address and drop all nulls.</p>
+</li>
+<li>
+<p><strong>Creation of “total rounds” and “course experience” variables</strong>: To answer the course experience question, I decided to analyze the 2022 season using data from the 2015 to 2021 seasons to determine the players' experience with the courses during the 2022 season. To do this, I created a new DataFrame containing two new variables.</p>
+<ul>
+<li>
+<p>The first was “total rounds,” which represented the total number of rounds the player has previously played on that course between the 2015 to 2021 seasons.</p>
+<ul>
+<li>To create these variables, I created a new dataset that excluded data from the 2022 season. Then, I created a DataFrame containing a variable for the total number of rounds a player has completed on a given course. I achieved this by grouping by &quot;player&quot; and &quot;course&quot; and then using the .sum() function.</li>
+</ul>
+</li>
+<li>
+<p>The second variable was &quot;course experience,&quot; which assigned each player in the 2022 season a course experience label. The three labels were &quot;Experienced&quot; (having played more than 16 rounds on the course), &quot;Knowledgeable&quot; (having played between 5 and 15 rounds on the course), and &quot;Novice” (having played 4 or fewer rounds on the course).</p>
+<ul>
+<li>I created this variable within the DataFrame by running the entire DataFrame through the following function:</li>
+</ul>
+<p><img src="./PGA_EDA_Figures/experience_grouping_code.png" alt="Experience_Grouping_Code"></p>
+<ul>
+<li>Finally, I created a DataFrame of only the 2022 season and merged the total rounds information into this DataFrame.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="23-pga-tour-data-dictionary">2.3 PGA Tour Data Dictionary</h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Data Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Player_initial_last</td>
+<td>Initial of player's first name and their full last name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>player</td>
+<td>The player's full name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>player id</td>
+<td>A unique ID assigned to each individual player</td>
+<td>string</td>
+</tr>
+<tr>
+<td>tournament name</td>
+<td>The name of a tournament</td>
+<td>string</td>
+</tr>
+<tr>
+<td>tournament id</td>
+<td>A unique ID assigned to each individual tournament</td>
+<td>string</td>
+</tr>
+<tr>
+<td>course</td>
+<td>The name of the course the tournament is being played at</td>
+<td>string</td>
+</tr>
+<tr>
+<td>date</td>
+<td>The date the tournament is being played</td>
+<td>string</td>
+</tr>
+<tr>
+<td>season</td>
+<td>The year the tournament is being played</td>
+<td>string</td>
+</tr>
+<tr>
+<td>purse</td>
+<td>The total prize money available for the tournament</td>
+<td>float</td>
+</tr>
+<tr>
+<td>hole_par</td>
+<td>The number of stroke expected for a player to get throughout tournament</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>strokes</td>
+<td>The actual number of stroke the player had over the course of a tournament</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>n-rounds</td>
+<td>The number of golf round a player completed in a tournament</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>made_cut</td>
+<td>Whether a player made the cut after the second round to continue onto the weekend rounds</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>Finish</td>
+<td>The position a player finished in a tournament (indicates whether they tied for that position)</td>
+<td>string</td>
+</tr>
+<tr>
+<td>pos</td>
+<td>The numerical position a player finished (exclusing whether they tied for that position)</td>
+<td>float</td>
+</tr>
+<tr>
+<td>no_cut</td>
+<td>Whether or not the event included a cut after the first two days</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>sg_putt</td>
+<td>Strokes gained: putting</td>
+<td>float</td>
+</tr>
+<tr>
+<td>sg_arg</td>
+<td>Strokes gained: around the green</td>
+<td>float</td>
+</tr>
+<tr>
+<td>sg_app</td>
+<td>Strokes gained: approach the green</td>
+<td>float</td>
+</tr>
+<tr>
+<td>sg_ott</td>
+<td>Strokes gained: off the tee</td>
+<td>float</td>
+</tr>
+<tr>
+<td>sg_t2g</td>
+<td>Strokes gained: tee to green</td>
+<td>float</td>
+</tr>
+<tr>
+<td>sg_total</td>
+<td>The total strokes gained over the round</td>
+<td>float</td>
+</tr>
+<tr>
+<td>total round</td>
+<td>The total number of rounds a player has completed on a given golf course between the 2015 and 2021 season to be used as a reference for their performance in the 2022 season</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>course experience</td>
+<td>The label assigned to a player in the 2022 season based on the experience they had with the course between the 2015 and 2021 seasons</td>
+<td>string</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="3-pga-tour-data-analysis-results">3. PGA Tour Data Analysis Results</h2>
+<h3 id="31-overview-of-datasets">3.1 Overview of Datasets</h3>
+<p><strong>There are three datasets that resulted from the data cleaning process:</strong></p>
+<ol>
+<li><strong>pga_clean</strong>: this is the PGA Tour data that includes all the player-tournament information, even those without strokes gained information.</li>
+<li><strong>pga_sg</strong>: this is only the PGA Tour data that includes the strokes gained data for each player in the tournament.</li>
+<li><strong>season_2022_exp</strong>: this dataset as the player course experiencing data.</li>
+</ol>
+<p><strong><u><code>.info()</code> for pga_clean dataset</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Non-Null Count</th>
+<th>Dtype</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Player_initial_last</td>
+<td>36864</td>
+<td>object</td>
+</tr>
+<tr>
+<td>tournament id</td>
+<td>36864</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>player id</td>
+<td>36864</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>hole_par</td>
+<td>36864</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>strokes</td>
+<td>36864</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>n_rounds</td>
+<td>36864</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>made_cut</td>
+<td>36864</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>pos</td>
+<td>36864</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>player</td>
+<td>36864</td>
+<td>object</td>
+</tr>
+<tr>
+<td>tournament name</td>
+<td>36864</td>
+<td>object</td>
+</tr>
+<tr>
+<td>course</td>
+<td>36864</td>
+<td>object</td>
+</tr>
+<tr>
+<td>date</td>
+<td>36864</td>
+<td>object</td>
+</tr>
+<tr>
+<td>purse</td>
+<td>36864</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>season</td>
+<td>36864</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>no_cut</td>
+<td>36864</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>Finish</td>
+<td>36864</td>
+<td>object</td>
+</tr>
+<tr>
+<td>sg_putt</td>
+<td>36864</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>sg_arg</td>
+<td>36864</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>sg_app</td>
+<td>36864</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>sg_ott</td>
+<td>36864</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>sg_t2g</td>
+<td>36864</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>sg_total</td>
+<td>36864</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>Data columns (total 22 columns)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dtypes: float64(8), int64(8), object(6)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong><u><code>.info()</code> for pga_sg dataset</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Non-Null Count</th>
+<th>Dtype</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Player_initial_last</td>
+<td>29180</td>
+<td>object</td>
+</tr>
+<tr>
+<td>tournament id</td>
+<td>29180</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>player id</td>
+<td>29180</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>hole_par</td>
+<td>29180</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>strokes</td>
+<td>29180</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>n_rounds</td>
+<td>29180</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>made_cut</td>
+<td>29180</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>pos</td>
+<td>29180</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>player</td>
+<td>29180</td>
+<td>object</td>
+</tr>
+<tr>
+<td>tournament name</td>
+<td>29180</td>
+<td>object</td>
+</tr>
+<tr>
+<td>course</td>
+<td>29180</td>
+<td>object</td>
+</tr>
+<tr>
+<td>date</td>
+<td>29180</td>
+<td>object</td>
+</tr>
+<tr>
+<td>purse</td>
+<td>29180</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>season</td>
+<td>29180</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>no_cut</td>
+<td>29180</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>Finish</td>
+<td>29180</td>
+<td>object</td>
+</tr>
+<tr>
+<td>sg_putt</td>
+<td>29180</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>sg_arg</td>
+<td>29180</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>sg_app</td>
+<td>29180</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>sg_ott</td>
+<td>29180</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>sg_t2g</td>
+<td>29180</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>sg_total</td>
+<td>29180</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>Data columns (total 22 columns)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dtypes: float64(8), int64(8), object(6)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong><u><code>.info()</code> for season_2022_exp dataset</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Non-Null Count</th>
+<th>Dtype</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>player</td>
+<td>2566</td>
+<td>object</td>
+</tr>
+<tr>
+<td>course</td>
+<td>2566</td>
+<td>object</td>
+</tr>
+<tr>
+<td>previous total rounds</td>
+<td>2566</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>course experience</td>
+<td>2566</td>
+<td>object</td>
+</tr>
+<tr>
+<td>Player_initial_last</td>
+<td>2566</td>
+<td>object</td>
+</tr>
+<tr>
+<td>tournament id</td>
+<td>2566</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>player id</td>
+<td>2566</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>hole_par</td>
+<td>2566</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>strokes</td>
+<td>2566</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>n_rounds</td>
+<td>2566</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>made_cut</td>
+<td>2566</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>pos</td>
+<td>2566</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>tournament name</td>
+<td>2566</td>
+<td>object</td>
+</tr>
+<tr>
+<td>date</td>
+<td>2566</td>
+<td>object</td>
+</tr>
+<tr>
+<td>purse</td>
+<td>2566</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>season</td>
+<td>2566</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>no_cut</td>
+<td>2566</td>
+<td>int64</td>
+</tr>
+<tr>
+<td>Finish</td>
+<td>2566</td>
+<td>object</td>
+</tr>
+<tr>
+<td>sg_putt</td>
+<td>2566</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>sg_arg</td>
+<td>2566</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>sg_app</td>
+<td>2566</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>sg_ott</td>
+<td>2566</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>sg_t2g</td>
+<td>2566</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>sg_total</td>
+<td>2566</td>
+<td>float64</td>
+</tr>
+<tr>
+<td>Data columns (total 24 columns)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dtypes: float64(8), int64(9), object(7)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-hypothesis-1-testing-which-aspects-of-the-game-are-most-important">3.2 Hypothesis #1 Testing <em>(Which aspects of the game are most important)</em></h3>
+<p><strong>Question:</strong> What aspect of a player's golf game is the most important predictor of whether or not they perform well in a tournament?</p>
+<h4 id="321-pairgrid-plot-of-finishing-position-vs-strokes-gained-metrics">3.2.1 PairGrid Plot of Finishing Position vs. Strokes-Gained Metrics</h4>
+<p>I first created a PairGrid plot containing pair plots and kernal density estimate (KDE) plots to visually analyze which strokes gained variables are most related to the players' finishing positions.</p>
+<p><img src="./PGA_EDA_Figures/PGA_PairPlot.png" alt="Pair_Plot_Results"></p>
+<p><em><strong><span style="color:#E87E15"> Important note: </span></strong></em></p>
+<ul>
+<li>When examining the strokes gained variables, the strongest correlation will be found between &quot;strokes gained: total&quot; and finishing position. This is because the winner of the tournament will have a score that deviates furthest from the mean in the negative direction, resulting in the highest number of strokes gained compared to the rest of the field.</li>
+</ul>
+<p><em><strong><span style="color:#3FA40F"> Key takeaways: </span></strong></em></p>
+<ul>
+<li>
+<p>When determining which aspects of a player's game are the most important predictor of whether they perform well in a tournament, we are most interested in the top row of the PairGrid, and the leftmost column of the PairGrid.</p>
+</li>
+<li>
+<p>For the top row of kernel density estimate (KDE) plots, the top performing players are those towards the bottom of the graph, so we want to see which variables have the most negative relationship.</p>
+<ul>
+<li>Upon observation of the top KDE plots (disregarding the st_total variables), the other two variables that seem to have the greatest negative correlation with finishing position are “sg_app” (Strokes Gained - Approach) and “sp_t2g” (Strokes Gained - Tee to Green).</li>
+</ul>
+</li>
+<li>
+<p>“Strokes Gained - Approach” and “Strokes Gained -Tee 2 Green” being the most important indicators of a player's performance in a golf tournament is also supported by the following plots:</p>
+<ul>
+<li>
+<p>Strokes Gained - Approach x Strokes Gained - Total (both scatter and KDE plots)</p>
+<ul>
+<li>Since the best-performing players will have the highest “Strokes Gained - Total”, since these two variable appears to be positively correlated with one another, this indicates that “Strokes Gained - Approach” is an important indicator of a player’s overall performance.</li>
+</ul>
+</li>
+<li>
+<p>Strokes Gained - Tee to Green x Strokes Gained - Total (both scatter and KDE plots)</p>
+<ul>
+<li>For the same reason as stated above, the positive correlation between “Strokes Gained - Tee to Green” and “Strokes Gained - Total” indicates that “Strokes Gained - Tee to Green is an important indicator of a player’s overall performance.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Further, we observe the relationship between “Strokes Gained - Tee to Green” and the other strokes gained variables, we see that ‘Strokes Gained - Tee to Green” has the strongest positive correlation with “Strokes Gained - Approach.” This indicates that how a player is performing with their approach shots strongly contributes to their “Stroked Gained - Tee to Green” and their overall success in tournaments.</p>
+</li>
+</ul>
+<h4 id="322-correlation-heatmap-matrices-of-finishing-position-vs-strokes-gained-metrics">3.2.2 Correlation Heatmap Matrices of Finishing Position vs. Strokes Gained Metrics</h4>
+<p>Next, I created a correlation heatmap matrices to analyze the correlations between the different strokes gained statistics and the players' finishing positions.</p>
+<p><img src="./PGA_EDA_Figures/PGA_Correlation_Matrix.png" alt="PGA_Correlation_Matrix"></p>
+<p><em><strong><span style="color:#3FA40F"> Key takeaways: </span></strong></em></p>
+<ul>
+<li>The results of the heatmap of the correlation matrix confirm the findings from the PairGrid plots:
+<ul>
+<li>Strokes Gained - Tee to Green has a moderately strong correlation with finishing position (-0.67) and Strokes Gained - Total (0.77).</li>
+<li>Strokes Gained - Approach has a moderate correlation with finishing position (-0.48) and Strokes Gained - Total (0.56).</li>
+<li>Strokes Gained - Approach has a moderately strong correlation with Strokes Gained - Tee to Green (0.73), indicating the important contribution that approach shots have to Strokes Gained - Tee to Green</li>
+</ul>
+</li>
+<li><strong>New finding:</strong> The heatplot further revealed that “sg_putt” (Strokes Gained - Putting) is almost equally as correlated with finishing position as Strokes Gained - Approach is (-0.43 vs -0.48).</li>
+</ul>
+<h3 id="33-hypothesis-2-testing-does-experience-matter-on-which-courses-does-it-matter">3.3 Hypothesis #2 Testing <em>(Does experience matter? On which courses does it matter?)</em></h3>
+<p><strong>Question:</strong> Do PGA Tour players with more experience perform better than those with less? And are there specific courses on the PGA Tour schedule that reward golfers with more course experience?</p>
+<h4 id="331-side-by-side-boxplots-of-players-with-different-experience-levels-for-2022-season">3.3.1 Side-by-Side Boxplots of Players with Different Experience Levels for 2022 Season</h4>
+<p>First, I generated side-by-side boxplots of player course experience and finishing position to see if the distributions show any meaningful difference.</p>
+<p><img src="./PGA_EDA_Figures/Side-by-Side_Experience_Box_Whisker.png" alt="Experience_Box_and_Whisker"></p>
+<p><em><strong><span style="color:#3FA40F"> Impression: </span></strong></em></p>
+<ul>
+<li>
+<p>In general, experienced and knowledgeable golfers tend to perform slightly better than novice players; however, the difference in the distribution is not significant.</p>
+</li>
+<li>
+<p>Out of the three categories, experienced golfers tend to perform the best. This is expected, as in most sports (up until a certain point) the more time they have to improve and understand their game, the better they will perform. However, it is important to note that there is little difference in distribution between the experienced and knowledgeable golfers.</p>
+</li>
+</ul>
+<h4 id="332-bar-graph-of-total-round-played-on-course-prior-to-win-in-2022-season">3.3.2 Bar Graph of Total Round Played on Course Prior to Win in 2022 Season</h4>
+<p>Secondly, I created a bar graph that shows the total number of rounds the previous winners had played on the course prior to them winning there in the 2022 season.</p>
+<p><img src="./PGA_EDA_Figures/Total_Experience_Winners.png" alt="Total_Experience_Winners"></p>
+<p><em><strong><span style="color:#3FA40F"> Impression: </span></strong></em></p>
+<ul>
+<li>When just considering the winners of the tournaments, the top 5 courses that most favor course experience are:
+<ol>
+<li>Pebble Beach Resort</li>
+<li>Muirfield Village Golf Club</li>
+<li>La Quinta CC</li>
+<li>Torrey Pines North</li>
+<li>Waialae CC</li>
+</ol>
+</li>
+</ul>
+<h4 id="333-bar-graph-of-average-rounds-played-on-course-prior-to-top-5-finish-in-2022-season">3.3.3 Bar Graph of Average Rounds Played on Course Prior to Top-5 Finish in 2022 Season</h4>
+<p>I then repeated step two, but instead of just including the golfers who won the tournament, I included the average total previous rounds played of all the players who placed 5th or above.</p>
+<p><img src="./PGA_EDA_Figures/Average_Experience_Top5.png" alt="Average_Experience_Top5"></p>
+<p><em><strong><span style="color:#3FA40F"> Impression: </span></strong></em></p>
+<ul>
+<li>
+<p>When considering the average previous total rounds played among players finishing 5th or above, the top 5 courses that favor course experience are:</p>
+<ol>
+<li>Pebble Beach Resort</li>
+<li>Torrey Pines North</li>
+<li>Waialae CC</li>
+<li>La Quinta CC</li>
+<li>Albany - New Providence</li>
+</ol>
+<p>In this list, Pebble Beach Resort remains the top course that favors course experience. The only course that difference between these two lists are that Muirfield Village Golf Club moves out of the top 5 down to 15th, and Albany - New Providence is the new 5th.</p>
+</li>
+</ul>
+<h4 id="334-bar-graph-of-average-rounds-played-on-course-prior-to-top-10-finish-in-2022-season">3.3.4 Bar Graph of Average Rounds Played on Course Prior to Top-10 Finish in 2022 Season</h4>
+<p>I repeated this, again, for all players who place 10th or above to see how the results change when including a larger sample of the top performing golfers.</p>
+<p><img src="./PGA_EDA_Figures/Average_Experience_Top10.png" alt="Average_Experience_Top10"></p>
+<p><em><strong><span style="color:#3FA40F"> Impression: </span></strong></em></p>
+<ul>
+<li>
+<p>When considering the average previous total rounds played among players finishing 5th or above, the top 10 courses that favor course experience are:</p>
+<ol>
+<li>Pebble Beach Resort</li>
+<li>TPC Scottsdale</li>
+<li>Torrey Pines North</li>
+<li>Waialae CC</li>
+<li>Colonial</li>
+</ol>
+<p>In this list, Pebble Beach Report remains the top course that favors course experience. The courses that remain from the first two lists are Pebble Beach Report, Torrey Pines North, and Waialae CC. The new courses that enter the top 5 are TPC Scottsdale and Colonial.</p>
+</li>
+</ul>
+<h3 id="34-hypothesis-3-testing-on-which-courses-does-putting-matter-the-most">3.4 Hypothesis #3 Testing <em>(On which courses does putting matter the most?)</em></h3>
+<p><strong>Question</strong>: On which courses is it most important to be &quot;hot with the putter?&quot; In other words, on which courses is it most important to be putting well in order to be in contention to win?</p>
+<h4 id="341-bar-graph-of-average-%22strokes-gained-putting-ratio%22-of-the-tournament-winners-on-each-course">3.4.1 Bar Graph of Average &quot;Strokes Gained Putting Ratio&quot; of the Tournament Winners on Each Course</h4>
+<p><strong><u>Approach:</u></strong></p>
+<ol>
+<li>Calculate the average of the “Strokes Gained Putting Ratio” of all the players that have won tournaments on each course.
+<ul>
+<li>Strokes Gained - Putting alone is not a good indicator of how important it is to be “hot with the putter” on a given golf course, because courses with easy greens will likely have winners with very high Strokes Gained Putting.
+<ul>
+<li>Therefore, the approach I’m going to take is to calculate the “Strokes Gained Putting Ratio”, which will be the ratio of Strokes Gained - Putting to Strokes Gained - Total, since Strokes Gained - Total is the indicator of the player's overall performance.</li>
+<li>Ultimately, the “Strokes Gained Putting Statistic” is an indicator of how much the player’s putting contributed to them winning the tournament. It is logical to assume that on putter-intensive courses, the winner’s putting will have to contributing significantly to their overall performance.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Sort the list of “Average Strokes Gained Putting Ratios of All Winning Players by Course” to determine which courses historically have had winners with the highest Strokes Gained  Putting Ratio statistic.</li>
+</ol>
+<p><img src="./PGA_EDA_Figures/Putting_Intensive_Courses.png" alt="Putting_Intensive_Courses"></p>
+<p><em><strong><span style="color:#3FA40F"> Impression: </span></strong></em></p>
+<p>In the 2015 to 2022 PGA Tour seasons, the courses where being “hot with the putter” has been most important have been:</p>
+<ol>
+<li>Caves Valley Golf Club</li>
+<li>Aronimink Golf Club</li>
+<li>Shadow Creek GC</li>
+<li>La Quinta CC</li>
+<li>TPC Harding Park</li>
+<li>Memorial Park GC</li>
+<li>Old White Course</li>
+<li>Waialae CC</li>
+<li>Trinity Forest Golf Club</li>
+<li>TPC Four Seasons Resort Golf Club</li>
+</ol>
+<hr>
+<h2 id="4-pga-tour-data-analysis-summary">4. PGA Tour Data Analysis Summary</h2>
+<h3 id="41-overall-project-summary">4.1 Overall Project Summary</h3>
+<p>The aim of this exploratory data analysis on PGA Tour data was to gain insight into which aspects of the professional golf game are most important in being a top competitor and to identify trends within the PGA Tour schedule that can help us better understand the courses that are played and whether specific courses favor or require different things, such as course experience or quality putting. This project required extensive cleaning of the PGA Tour Raw Dataset generated by advancedsportsanalytics.com, and the tailoring of variables to best suit the desired analysis. After the cleaning process was complete, multiple analytical methods were used to analyze both player and tournament data, such as pair plots, kernel density estimate (KDE) plots, correlation heatmap matrices, box plots, and bar charts. This analysis ultimately provided valuable insight into which strokes gained metrics are the most crucial, which tournaments on the PGA tour schedule most favor players with course experience, and on which courses putting is most important.</p>
+<h3 id="42-challenges-faced">4.2 Challenges Faced</h3>
+<p>The biggest difficulty when working with this dataset was that the original source for the dataset (<a href="http://advancedsportsanalytics.com/">advancedsportsanalytics.com</a>) is no longer a working website, and as a result, I was unable to read any description of the dataset or what the reasoning was behind some of the variables that were included. For example, the DKP, FDP, and SDP variables were specific to this dataset, and I didn’t know what they represented. So even though they did not matter for the question I was trying to answer, it would have been convenient to know what these variables represented.</p>
+<p>An additional challenge I faced when working with this dataset was that much of the analysis I was performing involved the strokes gained variables. However, there were many tournaments where this information was not included. I was able to work around this obstacle by creating two datasets, one with only the player-tournament information that included strokes gained data, and another with all the player-tournament information with zeros in place for any null strokes gained data.</p>
+<h3 id="43-conclusions">4.3 Conclusions</h3>
+<p>There were three main conclusions drawn from this data analysis:</p>
+<ol>
+<li>The most important aspects of a professional golfer’s game are the following (in order):
+<ol>
+<li><strong>Strokes gained - tee to green</strong></li>
+<li><strong>Strokes gained - approaching the green</strong></li>
+<li><strong>Strokes gained - putting</strong>
+Additionally, a player’s strokes gained - tee to green was most affected by strokes gained - approaching the green. This indicates that a player’s approach game is more important to their overall performance than their performance off the tee and around the green.</li>
+</ol>
+</li>
+<li>Over the course of a season, a player’s course experience is not strongly correlated with their performance in tournaments. However, there were specific courses on the PGA Tour 2022 schedule that favored players with course experience. These courses were <strong>Pebble Beach Resort</strong>, <strong>Torrey Pines North</strong>, and <strong>Waialae CC</strong>. Other notable courses that favored players with greater course experience were <strong>Augusta National Golf Club</strong> and <strong>TPC Sawgrass</strong>.</li>
+<li>The top five courses in which it is most important for players to be performing well with the putter are <strong>Caves Valley Golf Club, Aronimink Golf Club, Shadow Creek GC, La Quinta CC,</strong> and <strong>TPC Harding Park</strong>.</li>
+</ol>
+<h3 id="44-possible-next-steps">4.4 Possible Next Steps</h3>
+<p>There are endless possibilities for the analysis that could be performed on the data produced by PGA Tour golfers. Some possible next steps to continue the work of this analysis of the PGA Tour dataset could be to analyze individual seasons, individual tournaments, or individual players. For example, it would be interesting to group all the tournament results by course and see which strokes gained measures are most important for each course. A potential application of such analysis could be that if players knew which aspects of the golf game were most important for each course they are playing on, they could focus their practice the week before tournaments on those courses to strengthen that specific aspect of their game and hopefully have a better chance of competing for a win.</p>
+<p>Additionally, for individual players of interest, further analysis could be performed to analyze their performance over time and to identify trends in their performance, such as during which time of the season they typically perform the best and on which courses best suit their game.</p>
+<p>The possibilities and depth of the analysis that can be performed on the data produced by golf are endless and can provide value to both the players and those who love watching the game. Looking forward, I am excited to explore more data while growing my love for the game of golf as my data analysis skills grow and develop.</p>
+
+</body>
+</html>
