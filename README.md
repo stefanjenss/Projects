@@ -10,8 +10,8 @@ This exploratory data analysis (EDA) explores the raw data from all Professional
 
 
 <div style="display: flex;">
-    <img src="./PGA_Tour_Exploratory_Data_Analysis/PGA_EDA_Figures/PGA_PairPlot.png" alt="Image 1" style="width: 30%; margin-right: 2px;">
     <img src="./PGA_Tour_Exploratory_Data_Analysis/PGA_EDA_Figures/PGA_Correlation_Matrix.png" alt="Image 2" style="width: 30%; margin-right: 2px;">
+    <img src="./PGA_Tour_Exploratory_Data_Analysis/PGA_EDA_Figures/PGA_PairPlot.png" alt="Image 1" style="width: 30%; margin-right: 2px;">
     <img src="./PGA_Tour_Exploratory_Data_Analysis/PGA_EDA_Figures/Putting_Intensive_Courses.png" alt="Image 3" style="width: 30%;">
 </div>
 
