@@ -449,6 +449,7 @@ There were three main conclusions drawn from this data analysis:
     1. **Strokes gained - tee to green**
     2. **Strokes gained - approaching the green**
     3. **Strokes gained - putting**
+    
     Additionally, a player’s strokes gained - tee to green was most affected by strokes gained - approaching the green. This indicates that a player’s approach game is more important to their overall performance than their performance off the tee and around the green.
 2. Over the course of a season, a player’s course experience is not strongly correlated with their performance in tournaments. However, there were specific courses on the PGA Tour 2022 schedule that favored players with course experience. These courses were **Pebble Beach Resort**, **Torrey Pines North**, and **Waialae CC**. Other notable courses that favored players with greater course experience were **Augusta National Golf Club** and **TPC Sawgrass**.
 3. The top five courses in which it is most important for players to be performing well with the putter are **Caves Valley Golf Club, Aronimink Golf Club, Shadow Creek GC, La Quinta CC,** and **TPC Harding Park**.
