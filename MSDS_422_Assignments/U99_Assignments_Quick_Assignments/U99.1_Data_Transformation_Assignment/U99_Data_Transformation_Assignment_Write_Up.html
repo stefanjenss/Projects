@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>U99_Data_Transformation_Assignment_Write_Up.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="assignment-99-unit-99-data-transformation">Assignment 99 (Unit 99): Data Transformation</h1>
+<p><strong>MSDS 422: Machine Learning</strong> <br>
+<strong>Author:</strong> Stefan Jenss <br>
+<strong>Instructor:</strong> Donald Wedding, PhD <br>
+<strong>Date:</strong> February 14th, 2023 <br></p>
+<hr>
+<h2 id="phase-1-assignment-setup">Phase 1: Assignment Setup</h2>
+<p><strong><u>Description of the numeric-only Data Frame:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Statistic</th>
+<th>LOAN</th>
+<th>MORTDUE</th>
+<th>VALUE</th>
+<th>YOJ</th>
+<th>DEROG</th>
+<th>DELINQ</th>
+<th>CLAGE</th>
+<th>NINQ</th>
+<th>CLNO</th>
+<th>DEBTINC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>5960.00</td>
+<td>5442.00</td>
+<td>5848.00</td>
+<td>5445.00</td>
+<td>5252.00</td>
+<td>5380.00</td>
+<td>5652.00</td>
+<td>5450.00</td>
+<td>5738.00</td>
+<td>4693.00</td>
+</tr>
+<tr>
+<td><strong>Mean</strong></td>
+<td>18607.97</td>
+<td>73760.82</td>
+<td>101776.05</td>
+<td>8.92</td>
+<td>0.25</td>
+<td>0.45</td>
+<td>179.77</td>
+<td>1.19</td>
+<td>21.30</td>
+<td>33.78</td>
+</tr>
+<tr>
+<td><strong>Std</strong></td>
+<td>11207.48</td>
+<td>44457.61</td>
+<td>57385.78</td>
+<td>7.57</td>
+<td>0.85</td>
+<td>1.13</td>
+<td>85.81</td>
+<td>1.73</td>
+<td>10.14</td>
+<td>8.60</td>
+</tr>
+<tr>
+<td><strong>Min</strong></td>
+<td>1100.00</td>
+<td>2063.00</td>
+<td>8000.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.52</td>
+</tr>
+<tr>
+<td><strong>25%</strong></td>
+<td>11100.00</td>
+<td>46276.00</td>
+<td>66075.50</td>
+<td>3.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>115.12</td>
+<td>0.00</td>
+<td>15.00</td>
+<td>29.14</td>
+</tr>
+<tr>
+<td><strong>50%</strong></td>
+<td>16300.00</td>
+<td>65019.00</td>
+<td>89235.50</td>
+<td>7.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>173.47</td>
+<td>1.00</td>
+<td>20.00</td>
+<td>34.82</td>
+</tr>
+<tr>
+<td><strong>75%</strong></td>
+<td>23300.00</td>
+<td>91488.00</td>
+<td>119824.25</td>
+<td>13.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>231.56</td>
+<td>2.00</td>
+<td>26.00</td>
+<td>39.00</td>
+</tr>
+<tr>
+<td><strong>Max</strong></td>
+<td>89900.00</td>
+<td>399550.00</td>
+<td>855909.00</td>
+<td>41.00</td>
+<td>10.00</td>
+<td>15.00</td>
+<td>1168.23</td>
+<td>17.00</td>
+<td>71.00</td>
+<td>203.31</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="phase-2-normalize-the-data">Phase 2: Normalize the Data</h2>
+<p><strong><u>2.1 Final <code>.head()</code> Results from Normalization Process:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LOAN</strong></td>
+<td>1100</td>
+<td>1300</td>
+<td>1500</td>
+<td>1500</td>
+<td>1700</td>
+</tr>
+<tr>
+<td><strong>MORTDUE</strong></td>
+<td>25860.0</td>
+<td>70053.0</td>
+<td>13500.0</td>
+<td>NaN</td>
+<td>97800.0</td>
+</tr>
+<tr>
+<td><strong>VALUE</strong></td>
+<td>39025.0</td>
+<td>68400.0</td>
+<td>16700.0</td>
+<td>NaN</td>
+<td>112000.0</td>
+</tr>
+<tr>
+<td><strong>YOJ</strong></td>
+<td>10.5</td>
+<td>7.0</td>
+<td>4.0</td>
+<td>NaN</td>
+<td>3.0</td>
+</tr>
+<tr>
+<td><strong>DEROG</strong></td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td><strong>DELINQ</strong></td>
+<td>0.0</td>
+<td>2.0</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td><strong>CLAGE</strong></td>
+<td>94.366667</td>
+<td>121.833333</td>
+<td>149.466667</td>
+<td>NaN</td>
+<td>93.333333</td>
+</tr>
+<tr>
+<td><strong>NINQ</strong></td>
+<td>1.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>NaN</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td><strong>CLNO</strong></td>
+<td>9.0</td>
+<td>14.0</td>
+<td>10.0</td>
+<td>NaN</td>
+<td>14.0</td>
+</tr>
+<tr>
+<td><strong>DEBTINC</strong></td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td><strong>nor_LOAN</strong></td>
+<td>0.0</td>
+<td>0.002252</td>
+<td>0.004505</td>
+<td>0.004505</td>
+<td>0.006757</td>
+</tr>
+<tr>
+<td><strong>nor_MORTDUE</strong></td>
+<td>0.059869</td>
+<td>0.17105</td>
+<td>0.028773</td>
+<td>NaN</td>
+<td>0.240856</td>
+</tr>
+<tr>
+<td><strong>nor_VALUE</strong></td>
+<td>0.03659</td>
+<td>0.071234</td>
+<td>0.010261</td>
+<td>NaN</td>
+<td>0.122655</td>
+</tr>
+<tr>
+<td><strong>nor_YOJ</strong></td>
+<td>0.256098</td>
+<td>0.170732</td>
+<td>0.097561</td>
+<td>NaN</td>
+<td>0.073171</td>
+</tr>
+<tr>
+<td><strong>nor_DEROG</strong></td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td><strong>nor_DELINQ</strong></td>
+<td>0.0</td>
+<td>0.133333</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td><strong>nor_CLAGE</strong></td>
+<td>0.080777</td>
+<td>0.104289</td>
+<td>0.127942</td>
+<td>NaN</td>
+<td>0.079893</td>
+</tr>
+<tr>
+<td><strong>nor_NINQ</strong></td>
+<td>0.058824</td>
+<td>0.0</td>
+<td>0.058824</td>
+<td>NaN</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td><strong>nor_CLNO</strong></td>
+<td>0.126761</td>
+<td>0.197183</td>
+<td>0.140845</td>
+<td>NaN</td>
+<td>0.197183</td>
+</tr>
+<tr>
+<td><strong>nor_DEBTINC</strong></td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td><strong>TARGET_BAD_FLAG</strong></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>TARGET_LOSS_AMT</strong></td>
+<td>641.0</td>
+<td>1109.0</td>
+<td>767.0</td>
+<td>1425.0</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td><strong>REASON</strong></td>
+<td>HomeImp</td>
+<td>HomeImp</td>
+<td>HomeImp</td>
+<td>NaN</td>
+<td>HomeImp</td>
+</tr>
+<tr>
+<td><strong>JOB</strong></td>
+<td>Other</td>
+<td>Other</td>
+<td>Other</td>
+<td>NaN</td>
+<td>Office</td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>2.2 Calculating Normalized Values for <code>LOAN</code> Without Using MinMaxScalar:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>LOAN</th>
+<th>nor_LOAN</th>
+<th>calc_Loan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1100</td>
+<td>0.000000</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<td>1300</td>
+<td>0.002252</td>
+<td>0.002252</td>
+</tr>
+<tr>
+<td>1500</td>
+<td>0.004505</td>
+<td>0.004505</td>
+</tr>
+<tr>
+<td>1500</td>
+<td>0.004505</td>
+<td>0.004505</td>
+</tr>
+<tr>
+<td>1700</td>
+<td>0.006757</td>
+<td>0.006757</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>The MinMaxScalar values and the calculated values are identical.</p>
+</blockquote>
+<h2 id="phase-3-standardize-the-data">Phase 3: Standardize the Data</h2>
+<p><strong><u>3.1 Final <code>.head()</code> Results from Standarization Process:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LOAN</strong></td>
+<td>1100</td>
+<td>1300</td>
+<td>1500</td>
+<td>1500</td>
+<td>1700</td>
+</tr>
+<tr>
+<td><strong>MORTDUE</strong></td>
+<td>25860.0</td>
+<td>70053.0</td>
+<td>13500.0</td>
+<td>NaN</td>
+<td>97800.0</td>
+</tr>
+<tr>
+<td><strong>VALUE</strong></td>
+<td>39025.0</td>
+<td>68400.0</td>
+<td>16700.0</td>
+<td>NaN</td>
+<td>112000.0</td>
+</tr>
+<tr>
+<td><strong>YOJ</strong></td>
+<td>10.5</td>
+<td>7.0</td>
+<td>4.0</td>
+<td>NaN</td>
+<td>3.0</td>
+</tr>
+<tr>
+<td><strong>DEROG</strong></td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td><strong>DELINQ</strong></td>
+<td>0.0</td>
+<td>2.0</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td><strong>CLAGE</strong></td>
+<td>94.366667</td>
+<td>121.833333</td>
+<td>149.466667</td>
+<td>NaN</td>
+<td>93.333333</td>
+</tr>
+<tr>
+<td><strong>NINQ</strong></td>
+<td>1.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>NaN</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td><strong>CLNO</strong></td>
+<td>9.0</td>
+<td>14.0</td>
+<td>10.0</td>
+<td>NaN</td>
+<td>14.0</td>
+</tr>
+<tr>
+<td><strong>DEBTINC</strong></td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td><strong>std_LOAN</strong></td>
+<td>-1.562299</td>
+<td>-1.544453</td>
+<td>-1.526606</td>
+<td>-1.526606</td>
+<td>-1.508759</td>
+</tr>
+<tr>
+<td><strong>std_MORTDUE</strong></td>
+<td>-1.077548</td>
+<td>-0.083409</td>
+<td>-1.355591</td>
+<td>NaN</td>
+<td>0.540771</td>
+</tr>
+<tr>
+<td><strong>std_VALUE</strong></td>
+<td>-1.093588</td>
+<td>-0.581658</td>
+<td>-1.482655</td>
+<td>NaN</td>
+<td>0.178177</td>
+</tr>
+<tr>
+<td><strong>std_YOJ</strong></td>
+<td>0.208329</td>
+<td>-0.253822</td>
+<td>-0.649951</td>
+<td>NaN</td>
+<td>-0.781994</td>
+</tr>
+<tr>
+<td><strong>std_DEROG</strong></td>
+<td>-0.300922</td>
+<td>-0.300922</td>
+<td>-0.300922</td>
+<td>NaN</td>
+<td>-0.300922</td>
+</tr>
+<tr>
+<td><strong>std_DELINQ</strong></td>
+<td>-0.398738</td>
+<td>1.375631</td>
+<td>-0.398738</td>
+<td>NaN</td>
+<td>-0.398738</td>
+</tr>
+<tr>
+<td><strong>std_CLAGE</strong></td>
+<td>-0.995304</td>
+<td>-0.675189</td>
+<td>-0.353132</td>
+<td>NaN</td>
+<td>-1.007348</td>
+</tr>
+<tr>
+<td><strong>std_NINQ</strong></td>
+<td>-0.107639</td>
+<td>-0.686169</td>
+<td>-0.107639</td>
+<td>NaN</td>
+<td>-0.686169</td>
+</tr>
+<tr>
+<td><strong>std_CLNO</strong></td>
+<td>-1.212866</td>
+<td>-0.719675</td>
+<td>-1.114228</td>
+<td>NaN</td>
+<td>-0.719675</td>
+</tr>
+<tr>
+<td><strong>std_DEBTINC</strong></td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td><strong>TARGET_BAD_FLAG</strong></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>TARGET_LOSS_AMT</strong></td>
+<td>641.0</td>
+<td>1109.0</td>
+<td>767.0</td>
+<td>1425.0</td>
+<td>NaN</td>
+</tr>
+<tr>
+<td><strong>REASON</strong></td>
+<td>HomeImp</td>
+<td>HomeImp</td>
+<td>HomeImp</td>
+<td>NaN</td>
+<td>HomeImp</td>
+</tr>
+<tr>
+<td><strong>JOB</strong></td>
+<td>Other</td>
+<td>Other</td>
+<td>Other</td>
+<td>NaN</td>
+<td>Office</td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>3.2 Manual Calculation of the StandardScaler for <code>std_LOAN</code></u></strong></p>
+<table>
+<thead>
+<tr>
+<th>LOAN</th>
+<th>std_LOAN</th>
+<th>calc_Loan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1100</td>
+<td>-1.562299</td>
+<td>-1.562168</td>
+</tr>
+<tr>
+<td>1300</td>
+<td>-1.544453</td>
+<td>-1.544323</td>
+</tr>
+<tr>
+<td>1500</td>
+<td>-1.526606</td>
+<td>-1.526478</td>
+</tr>
+<tr>
+<td>1500</td>
+<td>-1.526606</td>
+<td>-1.526478</td>
+</tr>
+<tr>
+<td>1700</td>
+<td>-1.508759</td>
+<td>-1.508633</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>The calculated values are extremely similar to the StandardScaler numbers.</p>
+</blockquote>
+
+</body>
+</html>

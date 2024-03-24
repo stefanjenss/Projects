@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>U99_PCA_Assignment_Write_Up.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="assignment-99-unit-99-principal-component-analysis">Assignment 99 (Unit 99): Principal Component Analysis</h1>
+<p><strong>MSDS 422: Machine Learning</strong> <br>
+<strong>Author:</strong> Stefan Jenss <br>
+<strong>Instructor:</strong> Donald Wedding, PhD <br>
+<strong>Date:</strong> February 18th, 2023 <br></p>
+<hr>
+<h2 id="phase-1-assignment-setup">Phase 1: Assignment Setup</h2>
+<p><strong><u>Missing Value Imputation Methods Used:</u></strong></p>
+<blockquote>
+<p>For this assignment, I elected to use the same imputation methods I have been using in previous assignments for mental consistency with the data.</p>
+</blockquote>
+<ol>
+<li>Fill in missing jobs with the category &quot;MISSING&quot;</li>
+<li>Perform missing value imputation for &quot;VALUE&quot; based on the &quot;JOB&quot; class</li>
+<li>Perform missing value imputation for &quot;LOAN&quot; based on the &quot;JOB&quot; class</li>
+<li>Perform missing value imputation for &quot;DEBTINC&quot; based on the &quot;JOB&quot; class</li>
+<li>Perform a general missing value imputation for the rest of the numeric variables based on the median values</li>
+</ol>
+<p><strong><u><code>.head()</code> preview of the numeric-only Data Frame (missing value imputation completed):</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>IMP_VALUE</th>
+<th>IMP_LOAN</th>
+<th>IMP_DEBTINC</th>
+<th>IMP_MORTDUE</th>
+<th>IMP_YOJ</th>
+<th>IMP_DEROG</th>
+<th>IMP_DELINQ</th>
+<th>IMP_CLAGE</th>
+<th>IMP_NINQ</th>
+<th>IMP_CLNO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>39025.0</td>
+<td>1100</td>
+<td>35.247328</td>
+<td>25860.0</td>
+<td>10.5</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>94.366667</td>
+<td>1.0</td>
+<td>9.0</td>
+</tr>
+<tr>
+<td>68400.0</td>
+<td>1300</td>
+<td>35.247328</td>
+<td>70053.0</td>
+<td>7.0</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>121.833333</td>
+<td>0.0</td>
+<td>14.0</td>
+</tr>
+<tr>
+<td>16700.0</td>
+<td>1500</td>
+<td>35.247328</td>
+<td>13500.0</td>
+<td>4.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>149.466667</td>
+<td>1.0</td>
+<td>10.0</td>
+</tr>
+<tr>
+<td>78227.0</td>
+<td>1500</td>
+<td>30.311902</td>
+<td>65019.0</td>
+<td>7.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>173.466667</td>
+<td>1.0</td>
+<td>20.0</td>
+</tr>
+<tr>
+<td>112000.0</td>
+<td>1700</td>
+<td>36.158718</td>
+<td>97800.0</td>
+<td>3.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>93.333333</td>
+<td>0.0</td>
+<td>14.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>Description of the numeric-only Data Frame (missing value imputation completed):</u></strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>Statistic</strong></th>
+<th>IMP_VALUE</th>
+<th>IMP_LOAN</th>
+<th>IMP_DEBTINC</th>
+<th>IMP_MORTDUE</th>
+<th>IMP_YOJ</th>
+<th>IMP_DEROG</th>
+<th>IMP_DELINQ</th>
+<th>IMP_CLAGE</th>
+<th>IMP_NINQ</th>
+<th>IMP_CLNO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Count</strong></td>
+<td>5960.000000</td>
+<td>5960.000000</td>
+<td>5960.000000</td>
+<td>5960.000000</td>
+<td>5960.000000</td>
+<td>5960.000000</td>
+<td>5960.000000</td>
+<td>5960.000000</td>
+<td>5960.000000</td>
+<td>5960.000000</td>
+</tr>
+<tr>
+<td><strong>Mean</strong></td>
+<td>101553.336668</td>
+<td>18607.969799</td>
+<td>34.011474</td>
+<td>73001.041812</td>
+<td>8.756166</td>
+<td>0.224329</td>
+<td>0.405705</td>
+<td>179.440725</td>
+<td>1.170134</td>
+<td>21.247819</td>
+</tr>
+<tr>
+<td><strong>Std</strong></td>
+<td>56906.419451</td>
+<td>11207.480417</td>
+<td>7.667363</td>
+<td>42552.726779</td>
+<td>7.259424</td>
+<td>0.798458</td>
+<td>1.079256</td>
+<td>83.574697</td>
+<td>1.653866</td>
+<td>9.951308</td>
+</tr>
+<tr>
+<td><strong>Min</strong></td>
+<td>8000.000000</td>
+<td>1100.000000</td>
+<td>0.524499</td>
+<td>2063.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<td><strong>25%</strong></td>
+<td>66489.500000</td>
+<td>11100.000000</td>
+<td>30.507400</td>
+<td>48139.000000</td>
+<td>3.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>117.371430</td>
+<td>0.000000</td>
+<td>15.000000</td>
+</tr>
+<tr>
+<td><strong>50%</strong></td>
+<td>89094.500000</td>
+<td>16300.000000</td>
+<td>35.247328</td>
+<td>65019.000000</td>
+<td>7.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>173.466667</td>
+<td>1.000000</td>
+<td>20.000000</td>
+</tr>
+<tr>
+<td><strong>75%</strong></td>
+<td>119144.750000</td>
+<td>23300.000000</td>
+<td>37.949892</td>
+<td>88200.250000</td>
+<td>12.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>227.143058</td>
+<td>2.000000</td>
+<td>26.000000</td>
+</tr>
+<tr>
+<td><strong>Max</strong></td>
+<td>855909.000000</td>
+<td>89900.000000</td>
+<td>203.312149</td>
+<td>399550.000000</td>
+<td>41.000000</td>
+<td>10.000000</td>
+<td>15.000000</td>
+<td>1168.233561</td>
+<td>17.000000</td>
+<td>71.000000</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="phase-2-principle-component-analysis">Phase 2: Principle Component Analysis</h2>
+<p><strong><u>Eigen Values:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Eigen</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.22390512</td>
+<td>1.39807935</td>
+</tr>
+<tr>
+<td>1.24113934</td>
+<td>1.00193977</td>
+</tr>
+<tr>
+<td>0.96209447</td>
+<td>0.84962017</td>
+</tr>
+<tr>
+<td>0.78261743</td>
+<td>0.7182844</td>
+</tr>
+<tr>
+<td>0.62915407</td>
+<td>0.19484402</td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>Summary of the Variance and Total Variance:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Eigen</th>
+<th>Variation</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.22</td>
+<td>22%</td>
+<td>22%</td>
+</tr>
+<tr>
+<td>1.4</td>
+<td>13%</td>
+<td>36%</td>
+</tr>
+<tr>
+<td>1.24</td>
+<td>12%</td>
+<td>48%</td>
+</tr>
+<tr>
+<td>1.0</td>
+<td>10%</td>
+<td>58%</td>
+</tr>
+<tr>
+<td>0.96</td>
+<td>9%</td>
+<td>68%</td>
+</tr>
+<tr>
+<td>0.85</td>
+<td>8%</td>
+<td>76%</td>
+</tr>
+<tr>
+<td>0.78</td>
+<td>7%</td>
+<td>84%</td>
+</tr>
+<tr>
+<td>0.72</td>
+<td>7%</td>
+<td>91%</td>
+</tr>
+<tr>
+<td>0.63</td>
+<td>6%</td>
+<td>98%</td>
+</tr>
+<tr>
+<td>0.19</td>
+<td>1%</td>
+<td>100%</td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>Scree Plot of Eigen Values | Variance Explained | Total Variance Explained:</u></strong></p>
+<div style="display: flex;">
+<img src="Scree_Plot_EV.png" alt="Image 1" style="width: 33.33%;">
+<img src="Scree_Plot_VE.png" alt="Image 2" style="width: 33.33%;">
+<img src="Scree_Plot_TVE.png" alt="Image 2" style="width: 33.33%;">
+</div>
+<blockquote>
+<p><strong><u>Principal Component Selection:</u></strong></p>
+<ul>
+<li>Based on the scree plot, I will choose 4 principal components for the assignment.</li>
+<li>This is because the eigenvalues and variance explained by the principal components level off after the 4th principal component.</li>
+<li>Additionally, the eigenvalues of the first 4 principal components are greater than 1.0, which is a common rule of thumb for selecting principal components.</li>
+</ul>
+</blockquote>
+<p><strong><u>Principle Component Data Frame:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>IMP_VALUE</th>
+<th>IMP_LOAN</th>
+<th>IMP_DEBTINC</th>
+<th>IMP_MORTDUE</th>
+<th>IMP_YOJ</th>
+<th>IMP_DEROG</th>
+<th>IMP_DELINQ</th>
+<th>IMP_CLAGE</th>
+<th>IMP_NINQ</th>
+<th>IMP_CLNO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.584874</td>
+<td>0.312647</td>
+<td>0.175836</td>
+<td>0.573248</td>
+<td>0.035622</td>
+<td>-0.025728</td>
+<td>0.052885</td>
+<td>0.233939</td>
+<td>0.045930</td>
+<td>0.372932</td>
+</tr>
+<tr>
+<td>-0.065912</td>
+<td>-0.074498</td>
+<td>0.338365</td>
+<td>0.006519</td>
+<td>-0.317499</td>
+<td>0.496001</td>
+<td>0.344196</td>
+<td>-0.347116</td>
+<td>0.511857</td>
+<td>0.166708</td>
+</tr>
+<tr>
+<td>-0.186702</td>
+<td>-0.064637</td>
+<td>-0.067890</td>
+<td>-0.223311</td>
+<td>0.512765</td>
+<td>0.220450</td>
+<td>0.525229</td>
+<td>0.455348</td>
+<td>-0.033992</td>
+<td>0.332563</td>
+</tr>
+<tr>
+<td>0.011836</td>
+<td>0.682006</td>
+<td>-0.023554</td>
+<td>-0.143423</td>
+<td>0.463698</td>
+<td>0.190154</td>
+<td>-0.161126</td>
+<td>-0.141836</td>
+<td>0.337836</td>
+<td>-0.319713</td>
+</tr>
+<tr>
+<td>-0.185375</td>
+<td>-0.069218</td>
+<td>0.737136</td>
+<td>-0.161805</td>
+<td>0.209851</td>
+<td>-0.491388</td>
+<td>-0.187641</td>
+<td>0.062310</td>
+<td>0.204019</td>
+<td>0.158365</td>
+</tr>
+<tr>
+<td>0.077544</td>
+<td>0.179439</td>
+<td>0.388963</td>
+<td>0.019288</td>
+<td>0.093382</td>
+<td>-0.000053</td>
+<td>0.451666</td>
+<td>-0.365484</td>
+<td>-0.633180</td>
+<td>-0.250812</td>
+</tr>
+<tr>
+<td>-0.121879</td>
+<td>0.171297</td>
+<td>0.321693</td>
+<td>-0.161425</td>
+<td>-0.227056</td>
+<td>0.553366</td>
+<td>-0.447775</td>
+<td>0.353939</td>
+<td>-0.366776</td>
+<td>0.090502</td>
+</tr>
+<tr>
+<td>0.188853</td>
+<td>-0.542847</td>
+<td>0.075551</td>
+<td>0.224025</td>
+<td>0.555411</td>
+<td>0.340291</td>
+<td>-0.326243</td>
+<td>-0.281603</td>
+<td>-0.057590</td>
+<td>-0.020635</td>
+</tr>
+<tr>
+<td>0.164217</td>
+<td>-0.236428</td>
+<td>0.213418</td>
+<td>0.134019</td>
+<td>-0.059680</td>
+<td>0.069083</td>
+<td>0.175376</td>
+<td>0.504499</td>
+<td>0.199124</td>
+<td>-0.721364</td>
+</tr>
+<tr>
+<td>0.707613</td>
+<td>-0.102364</td>
+<td>0.004863</td>
+<td>-0.692927</td>
+<td>-0.060230</td>
+<td>-0.017813</td>
+<td>0.000219</td>
+<td>-0.027765</td>
+<td>0.023915</td>
+<td>0.057854</td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>Selected Principal Component Data Frame:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>PC_1</th>
+<th>PC_2</th>
+<th>PC_3</th>
+<th>PC_4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-2.443934</td>
+<td>-0.013382</td>
+<td>-0.463002</td>
+<td>-0.301693</td>
+</tr>
+<tr>
+<td>-1.223679</td>
+<td>0.409178</td>
+<td>0.271007</td>
+<td>-1.366127</td>
+</tr>
+<tr>
+<td>-2.668941</td>
+<td>0.080118</td>
+<td>-0.452697</td>
+<td>-0.781204</td>
+</tr>
+<tr>
+<td>-0.998927</td>
+<td>-0.264450</td>
+<td>-0.204347</td>
+<td>-1.097299</td>
+</tr>
+<tr>
+<td>-0.567064</td>
+<td>0.055936</td>
+<td>-1.439306</td>
+<td>-1.337581</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="phase-3-interpretation-of-the-principal-component">Phase 3: Interpretation of the Principal Component</h2>
+<p><strong><u>Results (Principal Component 1):</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Coefficient</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IMP_VALUE</td>
+<td>0.584874</td>
+</tr>
+<tr>
+<td>IMP_LOAN</td>
+<td>0.312647</td>
+</tr>
+<tr>
+<td>IMP_DEBTINC</td>
+<td>0.175836</td>
+</tr>
+<tr>
+<td>IMP_MORTDUE</td>
+<td>0.573248</td>
+</tr>
+<tr>
+<td>IMP_YOJ</td>
+<td>0.035622</td>
+</tr>
+<tr>
+<td>IMP_DEROG</td>
+<td>-0.025728</td>
+</tr>
+<tr>
+<td>IMP_DELINQ</td>
+<td>0.052885</td>
+</tr>
+<tr>
+<td>IMP_CLAGE</td>
+<td>0.233939</td>
+</tr>
+<tr>
+<td>IMP_NINQ</td>
+<td>0.045930</td>
+</tr>
+<tr>
+<td>IMP_CLNO</td>
+<td>0.372932</td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>Interpretation:</u></strong></p>
+<ul>
+<li>Based on these values, we can interpret that the first principal component is most influenced by the features including <code>IMP_VALUE</code>, <code>IMP_MORTDUE</code>, and <code>IMP_CLNO</code>, which have coefficients of approximately 0.585, 0.573, and 0.373.</li>
+<li>These being the most influential features makes sense. With each of these features, the higher they are, the more debt and risk the borrowers have. As the value of the loan increases, the likelihood that the borrower won't have the money to repay it increases. Additionally, the larger a borrower's mortgage, the greater the chances that they prioritize making mortgage payments over loan payments.</li>
+</ul>
+<h2 id="phase-4-plots-of-the-principal-components">Phase 4: Plots of the Principal Components</h2>
+<p><strong><u>Scatter Plots of Selected Principal Components:</u></strong></p>
+<div style="display: flex; flex-wrap: wrap;">
+    <div style="flex: 33.33%; padding: 5px;">
+        <img src="PC1_PC2_Scatterplot.png" alt="PC1_PC2 Scatterplot" style="width: 100%;">
+    </div>
+    <div style="flex: 33.33%; padding: 5px;">
+        <img src="PC1_PC3_Scatterplot.png" alt="PC1_PC3 Scatterplot" style="width: 100%;">
+    </div>
+    <div style="flex: 33.33%; padding: 5px;">
+        <img src="PC1_PC4_Scatterplot.png" alt="PC1_PC4 Scatterplot" style="width: 100%;">
+    </div>
+    <div style="flex: 33.33%; padding: 5px;">
+        <img src="PC2_PC3_Scatterplot.png" alt="PC2_PC3 Scatterplot" style="width: 100%;">
+    </div>
+    <div style="flex: 33.33%; padding: 5px;">
+        <img src="PC2_PC4_Scatterplot.png" alt="PC2_PC4 Scatterplot" style="width: 100%;">
+    </div>
+    <div style="flex: 33.33%; padding: 5px;">
+        <img src="PC3_PC4_Scatterplot.png" alt="PC3_PC4 Scatterplot" style="width: 100%;">
+    </div>
+</div>
+<blockquote>
+<p>None of the principal components plotted against each other predict the target variables well. However, out of the principal components plotted against each other, PC_1 and PC_2 were the best at predicting the target variables with the least amount of overlap between the two target variables.</p>
+</blockquote>
+
+</body>
+</html>

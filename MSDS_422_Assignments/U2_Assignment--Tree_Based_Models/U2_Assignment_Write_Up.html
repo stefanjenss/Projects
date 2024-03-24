@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>U2_Assignment_Write_Up.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="assignment-2-unit-2-tree-based-models">Assignment 2 (Unit 2): Tree Based Models</h1>
+<p><strong>MSDS 422: Machine Learning</strong> <br>
+<strong>Author:</strong> Stefan Jenss <br>
+<strong>Instructor:</strong> Donald Wedding, PhD <br>
+<strong>Date:</strong> January 28th, 2023 <br></p>
+<h2 id="pre-phase-preparing-data-for-modeling">Pre-Phase: Preparing Data for Modeling</h2>
+<ol>
+<li>
+<p>Splitting the Data</p>
+<ul>
+<li>We created an 80/20% split of the data into training and test data. <br>
+<blockquote>
+<p>Ouput: <br>
+FLAG DATA <br>
+TRAINING =  (4768, 32) <br>
+TESTING =  (1192, 32) <br></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>Handling of Outliers
+For the handling of outliers for these models, we will consider outliers to be entries with a <code>TARGET_LOSS_AMT</code> value greater than $60,000.</p>
+<ul>
+<li>
+<p>Description of Test &amp; Training Data <em>(Pre-Outlier-Handing):</em></p>
+<table>
+<thead>
+<tr>
+<th>TRAINING</th>
+<th>TARGET_BAD_FLAG</th>
+<th>TARGET_LOSS_AMT</th>
+<th>TEST</th>
+<th>TARGET_BAD_FLAG</th>
+<th>TARGET_LOSS_AMT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>941.0</td>
+<td>941.000000</td>
+<td>count</td>
+<td>248.0</td>
+<td>248.000000</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>1.0</td>
+<td>13421.645058</td>
+<td>mean</td>
+<td>1.0</td>
+<td>13387.758065</td>
+</tr>
+<tr>
+<td>std</td>
+<td>0.0</td>
+<td>10662.481428</td>
+<td>std</td>
+<td>0.0</td>
+<td>11508.703991</td>
+</tr>
+<tr>
+<td>min</td>
+<td>1.0</td>
+<td>224.000000</td>
+<td>min</td>
+<td>1.0</td>
+<td>320.000000</td>
+</tr>
+<tr>
+<td>25%</td>
+<td>1.0</td>
+<td>5817.000000</td>
+<td>25%</td>
+<td>1.0</td>
+<td>5214.500000</td>
+</tr>
+<tr>
+<td>50%</td>
+<td>1.0</td>
+<td>10959.000000</td>
+<td>50%</td>
+<td>1.0</td>
+<td>11336.500000</td>
+</tr>
+<tr>
+<td>75%</td>
+<td>1.0</td>
+<td>17635.000000</td>
+<td>75%</td>
+<td>1.0</td>
+<td>16734.000000</td>
+</tr>
+<tr>
+<td>max</td>
+<td>1.0</td>
+<td>73946.000000</td>
+<td>max</td>
+<td>1.0</td>
+<td>78987.000000</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Description of the Test &amp; Training Data <em>(Post-Outlier-Handling):</em></p>
+<table>
+<thead>
+<tr>
+<th>TRAINING</th>
+<th>TARGET_BAD_FLAG</th>
+<th>TARGET_LOSS_AMT</th>
+<th>TEST</th>
+<th>TARGET_BAD_FLAG</th>
+<th>TARGET_LOSS_AMT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>941.0</td>
+<td>941.000000</td>
+<td>count</td>
+<td>248.0</td>
+<td>248.000000</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>1.0</td>
+<td>13400.475027</td>
+<td>mean</td>
+<td>1.0</td>
+<td>13264.209677</td>
+</tr>
+<tr>
+<td>std</td>
+<td>0.0</td>
+<td>10558.757161</td>
+<td>std</td>
+<td>0.0</td>
+<td>10902.351601</td>
+</tr>
+<tr>
+<td>min</td>
+<td>1.0</td>
+<td>224.000000</td>
+<td>min</td>
+<td>1.0</td>
+<td>320.000000</td>
+</tr>
+<tr>
+<td>25%</td>
+<td>1.0</td>
+<td>5817.000000</td>
+<td>25%</td>
+<td>1.0</td>
+<td>5214.500000</td>
+</tr>
+<tr>
+<td>50%</td>
+<td>1.0</td>
+<td>10959.000000</td>
+<td>50%</td>
+<td>1.0</td>
+<td>11336.500000</td>
+</tr>
+<tr>
+<td>75%</td>
+<td>1.0</td>
+<td>17635.000000</td>
+<td>75%</td>
+<td>1.0</td>
+<td>16734.000000</td>
+</tr>
+<tr>
+<td>max</td>
+<td>1.0</td>
+<td>60000.000000</td>
+<td>max</td>
+<td>1.0</td>
+<td>60000.000000</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="phase-i-decision-trees">Phase I: Decision Trees</h2>
+<h3 id="1-decision-tree-to-predict-the-probability-of-default">1. Decision Tree to Predict the Probability of Default</h3>
+<p><strong><u>Evaluate the accuracy of the model on both the training and test data set:</u></strong></p>
+<ul>
+<li>
+<p>Test a variety of <code>max_depth</code>'s to determine the best value to use.</p>
+<p><strong>Decision Tree | Probability of Default</strong></p>
+<table>
+<thead>
+<tr>
+<th>Max Depth</th>
+<th>Accuracy (Training)</th>
+<th>Accuracy (Testing)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>0.8873741610738255</td>
+<td>0.8825503355704698</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0.8928271812080537</td>
+<td>0.8859060402684564</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0.8978607382550335</td>
+<td>0.8875838926174496</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0.9054110738255033</td>
+<td>0.8901006711409396</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0.9081375838926175</td>
+<td>0.8884228187919463</td>
+</tr>
+<tr>
+<td>8</td>
+<td>0.915268456375839</td>
+<td>0.889261744966443</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>A <code>max_depth</code> of <strong>6</strong> appears to be the best, so we will use this for our model.</p>
+</li>
+</ul>
+<p><strong><u>ROC Curve for Probability of Default Decision Tree Model:</u></strong></p>
+<p><img src="ROC_Curve_Decision_Tree_PoDefault.png" alt="Alt text"></p>
+<p><strong><u>Decision Three Visualization (using Graphviz):</u></strong>
+<img src="Decision_Tree_Visualization.png" alt="Alt text"></p>
+<p><strong><u>Variables Included in Decision Tree to Predict Loan Default:</u></strong></p>
+<ol>
+<li>M_VALUE</li>
+<li>IMP_VALUE</li>
+<li>IMP_LOAN</li>
+<li>M_DEBTINC</li>
+<li>IMP_DEBTINC</li>
+<li>IMP_MORTDUE</li>
+<li>M_YOJ</li>
+<li>IMP_YOJ</li>
+<li>M_DEROG</li>
+<li>IMP_DEROG</li>
+<li>IMP_DELINQ</li>
+<li>IMP_CLAGE</li>
+<li>IMP_NINQ</li>
+<li>IMP_CLNO</li>
+<li>z_IMP_JOB_Office</li>
+<li>z_IMP_JOB_Sales</li>
+</ol>
+<h3 id="2-decision-tree-to-predict-the-loss-amount-assuming-that-the-loan-defaults">2. Decision Tree to Predict the Loss Amount Assuming that the Loan Defaults</h3>
+<p><strong><u>Evaluate RMSE for Training and Test Data Sets</u></strong></p>
+<ul>
+<li>
+<p>Test a variety of <code>max_depth</code>'s to determine the best value to use.</p>
+<p><strong>Decision Tree | Amount Lost Assuming Loan Default</strong></p>
+<table>
+<thead>
+<tr>
+<th>Max Depth</th>
+<th>TREE RMSE Train</th>
+<th>TREE RMSE Test</th>
+<th>RMSE Ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>5400.190276378008</td>
+<td>6530.612338895066</td>
+<td>1.2093300429545697</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4376.115301768929</td>
+<td>5300.687819418662</td>
+<td>1.2112770011512262</td>
+</tr>
+<tr>
+<td>5</td>
+<td>3526.247152892591</td>
+<td>4445.532172751522</td>
+<td>1.2606978410758414</td>
+</tr>
+<tr>
+<td>6</td>
+<td>2635.7179394222653</td>
+<td>4212.97475780228</td>
+<td>1.598416391522433</td>
+</tr>
+<tr>
+<td>7</td>
+<td>2024.466140124873</td>
+<td>4336.092613302751</td>
+<td>2.141844967105892</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>A <code>max_depth</code> of <strong>6</strong> appears to be the best, so we will use this for our model.</p>
+</li>
+</ul>
+<p><strong><u>Decision Three Visualization (using Graphviz):</u></strong>
+<img src="Decision_Tree_Viz_Amt.png" alt="Alt text"></p>
+<p><strong><u>Variables Included in Decision Tree to Predict Loss Amount Assuming Default:</u></strong></p>
+<ol>
+<li>IMP_VALUE</li>
+<li>IMP_LOAN</li>
+<li>M_DEBTINC</li>
+<li>IMP_DEBTINC</li>
+<li>IMP_MORTDUE</li>
+<li>IMP_YOJ</li>
+<li>IMP_DEROG</li>
+<li>IMP_DELINQ</li>
+<li>IMP_CLAGE</li>
+<li>IMP_NINQ</li>
+<li>IMP_CLNO</li>
+<li>z_IMP_REASON_DebtCon</li>
+<li>z_IMP_JOB_Other</li>
+</ol>
+<hr>
+<h2 id="phase-ii-random-forests">Phase II: Random Forests</h2>
+<h3 id="1-development-of-a-random-forest-to-predict-the-probability-of-default">1. Development of a Random Forest to Predict the Probability of Default</h3>
+<p><strong><u>Evaluate the accuracy of the Random Forest model on both the training and test data set:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Random Forest</th>
+<th>Probability of Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accuracy (Training)</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Accuracy (Testing)</td>
+<td>0.9177852348993288</td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>Graph of the ROC Curves for the Training and Test Data Set for the Random Forest model:</u></strong></p>
+<p><img src="ROC_Curve_Random_Forest_PoDefault.png" alt="Alt text"></p>
+<p><strong><u>List of Important Variables Included in the Random Forest Model to Predict Loan Default:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Importance Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M_DEBTINC</td>
+<td>100</td>
+</tr>
+<tr>
+<td>IMP_DEBTINC</td>
+<td>61</td>
+</tr>
+<tr>
+<td>IMP_CLAGE</td>
+<td>42</td>
+</tr>
+<tr>
+<td>IMP_DELINQ</td>
+<td>41</td>
+</tr>
+<tr>
+<td>IMP_LOAN</td>
+<td>37</td>
+</tr>
+<tr>
+<td>IMP_VALUE</td>
+<td>36</td>
+</tr>
+<tr>
+<td>IMP_MORTDUE</td>
+<td>33</td>
+</tr>
+<tr>
+<td>IMP_CLNO</td>
+<td>32</td>
+</tr>
+<tr>
+<td>IMP_YOJ</td>
+<td>28</td>
+</tr>
+<tr>
+<td>IMP_DEROG</td>
+<td>24</td>
+</tr>
+<tr>
+<td>IMP_NINQ</td>
+<td>20</td>
+</tr>
+<tr>
+<td>M_VALUE</td>
+<td>17</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-development-of-a-random-forest-to-predict-the-loss-amount-assuming-loan-default">2. Development of a Random Forest to Predict the Loss Amount Assuming Loan Default</h3>
+<p><strong><u>Evaluate the RMSE for both the training data set and the test data set:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Random Forest</th>
+<th>Loss Amount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RMSE (Training)</td>
+<td>1215.1036374284365</td>
+</tr>
+<tr>
+<td>RMSE (Testing)</td>
+<td>2725.840164535692</td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>Important Variables Included in the Random Forest Model to Predict Loss Amount:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Importance Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IMP_LOAN</td>
+<td>100</td>
+</tr>
+<tr>
+<td>IMP_CLNO</td>
+<td>13</td>
+</tr>
+<tr>
+<td>M_DEBTINC</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="phase-iii-gradient-boosting">Phase III: Gradient Boosting</h2>
+<h3 id="1-development-of-a-gradient-boosting-model-to-predict-the-probability-of-default">1. Development of a Gradient Boosting Model to Predict the Probability of Default</h3>
+<p><strong><u>Evaluate the Accuracy of the Model on Both Training and Test Data Sets:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Gradient Boosting</th>
+<th>Probability of Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accuracy (Training)</td>
+<td>0.9259647651006712</td>
+</tr>
+<tr>
+<td>Accuracy (Testing)</td>
+<td>0.9068791946308725</td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>Graph of the ROC Curves for the Training and Test Data Sets for the Gradient Boosting Model:</u></strong></p>
+<p><img src="ROC_Curve_Gradient_Boosting_PoDefault.png" alt="Alt text"></p>
+<p><strong><u>Important Variables Included in the Gradient Boosting Model to Predict Loan Default:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Importance Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M_DEBTINC</td>
+<td>100</td>
+</tr>
+<tr>
+<td>IMP_DEBTINC</td>
+<td>30</td>
+</tr>
+<tr>
+<td>IMP_DELINQ</td>
+<td>19</td>
+</tr>
+<tr>
+<td>IMP_CLAGE</td>
+<td>13</td>
+</tr>
+<tr>
+<td>M_VALUE</td>
+<td>7</td>
+</tr>
+<tr>
+<td>IMP_DEROG</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-development-of-a-gradient-boosting-model-to-predict-the-loss-amount-assuming-the-loan-defaults">2. Development of a Gradient Boosting Model to Predict the Loss Amount Assuming the Loan Defaults</h3>
+<p><strong><u>Evaluate the RMSE for Both the Training and Test Data Sets:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Gradient Boosting</th>
+<th>Loss Amount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RMSE (Training)</td>
+<td>1216.8745387135345</td>
+</tr>
+<tr>
+<td>RMSE (Testing)</td>
+<td>2272.6913845727468</td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>Important Variables Included in the Gradient Boosting Model to Predict Loss Amount:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Importance Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IMP_LOAN</td>
+<td>100</td>
+</tr>
+<tr>
+<td>IMP_CLNO</td>
+<td>15</td>
+</tr>
+<tr>
+<td>M_DEBTINC</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="phase-iv-roc-curves-analysis">Phase IV: ROC Curves Analysis</h2>
+<p><strong><u>Complete ROC Curve for the Decision Tree, Random Forest, and Gradient Boosting Models Using the Test Data Set:</u></strong>
+<img src="ROC_Curves_ALL_PoDefault.png" alt="Alt text"></p>
+<p><strong><u>Complete List of Root Mean Squared Error (RMSE) Averages for Predicted Loss Amount Assuming Default:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>RMSE Values</th>
+<th>Loss Amount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decision Tree</td>
+<td>4212.97475780228</td>
+</tr>
+<tr>
+<td>Random Forest</td>
+<td>2725.840164535692</td>
+</tr>
+<tr>
+<td>Gradient Boosting</td>
+<td>2272.6913845727468</td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>Comparison of the Frequency of Appearance of the Important Variables for Probability of Default:</u></strong></p>
+<p><strong>Important Variables | Probability of Default</strong></p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Important Variables</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vars_TREE</td>
+<td>['M_VALUE', 'IMP_VALUE', 'IMP_LOAN', 'M_DEBTINC', 'IMP_DEBTINC', 'IMP_MORTDUE', 'M_YOJ', 'IMP_YOJ', 'M_DEROG', 'IMP_DEROG', 'IMP_DELINQ', 'M_CLAGE', 'IMP_CLAGE', 'IMP_CLNO', 'z_IMP_JOB_Sales']</td>
+</tr>
+<tr>
+<td>Vars_RF</td>
+<td>['M_DEBTINC', 'IMP_DEBTINC', 'IMP_CLAGE', 'IMP_DELINQ', 'IMP_LOAN', 'IMP_VALUE', 'IMP_MORTDUE', 'IMP_CLNO', 'IMP_YOJ', 'IMP_DEROG', 'IMP_NINQ', 'M_VALUE']</td>
+</tr>
+<tr>
+<td>Vars_GB_flag</td>
+<td>[('M_DEBTINC', 100), ('IMP_DEBTINC', 30), ('IMP_DELINQ', 19), ('IMP_CLAGE', 13), ('M_VALUE', 7), ('IMP_DEROG', 7)]</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Appearance Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M_VALUE</td>
+<td>3</td>
+</tr>
+<tr>
+<td>M_DEBTINC</td>
+<td>3</td>
+</tr>
+<tr>
+<td>IMP_DEBTINC</td>
+<td>3</td>
+</tr>
+<tr>
+<td>IMP_DEROG</td>
+<td>3</td>
+</tr>
+<tr>
+<td>IMP_DELINQ</td>
+<td>3</td>
+</tr>
+<tr>
+<td>IMP_CLAGE</td>
+<td>3</td>
+</tr>
+<tr>
+<td>IMP_VALUE</td>
+<td>2</td>
+</tr>
+<tr>
+<td>IMP_LOAN</td>
+<td>2</td>
+</tr>
+<tr>
+<td>IMP_MORTDUE</td>
+<td>2</td>
+</tr>
+<tr>
+<td>IMP_YOJ</td>
+<td>2</td>
+</tr>
+<tr>
+<td>IMP_CLNO</td>
+<td>2</td>
+</tr>
+<tr>
+<td>M_YOJ</td>
+<td>1</td>
+</tr>
+<tr>
+<td>M_DEROG</td>
+<td>1</td>
+</tr>
+<tr>
+<td>z_IMP_JOB_Office</td>
+<td>1</td>
+</tr>
+<tr>
+<td>z_IMP_JOB_Sales</td>
+<td>1</td>
+</tr>
+<tr>
+<td>IMP_NINQ</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>Comparison of the Frequency of Appearance of the Important Variables for Predicted Amount Lost Assuming Default:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Important Variables</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vars_TREE_AMT</td>
+<td>['IMP_VALUE', 'IMP_LOAN', 'M_DEBTINC', 'IMP_DEBTINC', 'IMP_MORTDUE', 'IMP_YOJ', 'IMP_DEROG', 'IMP_DELINQ', 'IMP_CLAGE', 'IMP_NINQ', 'IMP_CLNO', 'z_IMP_REASON_DebtCon', 'z_IMP_JOB_Other']</td>
+</tr>
+<tr>
+<td>Vars_RF_AMT</td>
+<td>[('IMP_LOAN', 100), ('IMP_CLNO', 13), ('M_DEBTINC', 5)]</td>
+</tr>
+<tr>
+<td>Vars_GB_AMT</td>
+<td>[('IMP_LOAN', 100), ('IMP_CLNO', 15), ('M_DEBTINC', 6)]</td>
+</tr>
+</tbody>
+</table>
+<p>Important Variables | Loss Amount</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Appearance Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IMP_LOAN</td>
+<td>3</td>
+</tr>
+<tr>
+<td>M_DEBTINC</td>
+<td>3</td>
+</tr>
+<tr>
+<td>IMP_CLNO</td>
+<td>3</td>
+</tr>
+<tr>
+<td>IMP_VALUE</td>
+<td>1</td>
+</tr>
+<tr>
+<td>IMP_DEBTINC</td>
+<td>1</td>
+</tr>
+<tr>
+<td>IMP_MORTDUE</td>
+<td>1</td>
+</tr>
+<tr>
+<td>IMP_YOJ</td>
+<td>1</td>
+</tr>
+<tr>
+<td>IMP_DEROG</td>
+<td>1</td>
+</tr>
+<tr>
+<td>IMP_DELINQ</td>
+<td>1</td>
+</tr>
+<tr>
+<td>IMP_CLAGE</td>
+<td>1</td>
+</tr>
+<tr>
+<td>IMP_NINQ</td>
+<td>1</td>
+</tr>
+<tr>
+<td>z_IMP_REASON_DebtCon</td>
+<td>1</td>
+</tr>
+<tr>
+<td>z_IMP_JOB_Other</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>Final Observations/Conclusions About Comparative Tree-Based Models Results</u></strong></p>
+<ul>
+<li>
+<p>The Random Forest model for predicting the probability of default had the highest AUC value (0.97) compared to the Decision Tree
+(0.83) and the Gradient Boosting model (0.94). This indicates that the Random Forest model is the best model for predicting the
+probability of default.</p>
+</li>
+<li>
+<p>The Gradient Boosting model for predicting the loss amount had the lowest RMSE value (2,272) compared to the Decision Tree (4,212)
+and the Random Forest model (2,725). This indicates that the Gradient Boosting model is the best model for predicting the loss amount.</p>
+</li>
+<li>
+<p>The important variables for the probability of default varied between the models. However, the following variables appeared in the
+important variable lists for all three models: <code>M_VALUE</code>, <code>M_DEBTINC</code>, <code>IMP_DEBTINC</code>, <code>IMP_DEROG</code>, <code>IMP_DELINQ</code>, <code>IMP_CLAGE</code>. Based
+on the importance scores for the Gradient Boosting model, the most important variable appears to be <code>M_DEBTINC</code>.</p>
+</li>
+<li>
+<p>Similarly, the important variables for the loss amount varied between the models. However, the following variables appeared in the
+important variable lists for all three models: <code>IMP_LOAN</code>, <code>M_DEBTINC</code>, and <code>IMP_CLNO</code>. Based on the importance score for both the Random
+Forest and Gradient Boosting models, the most important of these variables appears to be <code>IMP_LOAN</code>.</p>
+</li>
+</ul>
+
+</body>
+</html>

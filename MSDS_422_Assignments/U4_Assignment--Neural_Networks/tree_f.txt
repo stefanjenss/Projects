@@ -1,0 +1,33 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname="helvetica"] ;
+edge [fontname="helvetica"] ;
+0 [label="TRUNC_M_DEBTINC <= 0.5\nsamples = 4768\nvalue = [3827, 941]\nclass = Good", fillcolor="#eba06a"] ;
+1 [label="TRUNC_IMP_DEBTINC <= 45.185\nsamples = 3770\nvalue = [3447, 323]\nclass = Good", fillcolor="#e78d4c"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="O_M_VALUE <= 0.5\nsamples = 3703\nvalue = [3445, 258]\nclass = Good", fillcolor="#e78a48"] ;
+1 -> 2 ;
+3 [label="samples = 3679\nvalue = [3439, 240]\nclass = Good", fillcolor="#e78a47"] ;
+2 -> 3 ;
+4 [label="samples = 24\nvalue = [6, 18]\nclass = Bad", fillcolor="#7bbeee"] ;
+2 -> 4 ;
+5 [label="TRUNC_IMP_DEBTINC <= 45.579\nsamples = 67\nvalue = [2, 65]\nclass = Bad", fillcolor="#3fa0e6"] ;
+1 -> 5 ;
+6 [label="samples = 5\nvalue = [2, 3]\nclass = Bad", fillcolor="#bddef6"] ;
+5 -> 6 ;
+7 [label="samples = 62\nvalue = [0, 62]\nclass = Bad", fillcolor="#399de5"] ;
+5 -> 7 ;
+8 [label="TRUNC_IMP_DELINQ <= 0.5\nsamples = 998\nvalue = [380, 618]\nclass = Bad", fillcolor="#b3d9f5"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="TRUNC_IMP_CLAGE <= 178.017\nsamples = 614\nvalue = [310, 304]\nclass = Good", fillcolor="#fefdfb"] ;
+8 -> 9 ;
+10 [label="samples = 393\nvalue = [151, 242]\nclass = Bad", fillcolor="#b5daf5"] ;
+9 -> 10 ;
+11 [label="samples = 221\nvalue = [159, 62]\nclass = Good", fillcolor="#efb286"] ;
+9 -> 11 ;
+12 [label="TRUNC_M_DEROG <= 0.5\nsamples = 384\nvalue = [70, 314]\nclass = Bad", fillcolor="#65b3eb"] ;
+8 -> 12 ;
+13 [label="samples = 353\nvalue = [54, 299]\nclass = Bad", fillcolor="#5dafea"] ;
+12 -> 13 ;
+14 [label="samples = 31\nvalue = [16, 15]\nclass = Good", fillcolor="#fdf7f3"] ;
+12 -> 14 ;
+}

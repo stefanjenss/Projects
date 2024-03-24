@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>U4_Assignment_Neural_Networks.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="assignment-4-unit-4-neural-networks-tensorflow">Assignment 4 (Unit 4): Neural Networks (TensorFlow)</h1>
+<p><strong>MSDS 422: Machine Learning</strong> <br>
+<strong>Author:</strong> Stefan Jenss <br>
+<strong>Instructor:</strong> Donald Wedding, PhD <br>
+<strong>Date:</strong> March 10th, 2024 <br></p>
+<h2 id="1-create-a-training-and-test-data-set">1. Create a Training and Test Data Set</h2>
+<blockquote>
+<p>Same as the previous assignment</p>
+</blockquote>
+<ol>
+<li>Splitting the Data
+<ul>
+<li>
+<p>We created an 80/20% split of the data into training and test data. <br></p>
+<blockquote>
+<p>Output: <br>
+FLAG DATA <br>
+TRAINING =  (4768, 32) <br>
+TESTING =  (1192, 32) <br></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>Handling of Outliers
+For the handling of outliers for these models, we will consider outliers to be entries with a <code>TARGET_LOSS_AMT</code> value greater than $60,000.
+<ul>
+<li>
+<p>Description of Test &amp; Training Data <em>(Pre-Outlier-Handing):</em></p>
+<table>
+<thead>
+<tr>
+<th>TRAINING</th>
+<th>TARGET_BAD_FLAG</th>
+<th>TARGET_LOSS_AMT</th>
+<th>TEST</th>
+<th>TARGET_BAD_FLAG</th>
+<th>TARGET_LOSS_AMT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>941.0</td>
+<td>941.000000</td>
+<td>count</td>
+<td>248.0</td>
+<td>248.000000</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>1.0</td>
+<td>13421.645058</td>
+<td>mean</td>
+<td>1.0</td>
+<td>13387.758065</td>
+</tr>
+<tr>
+<td>std</td>
+<td>0.0</td>
+<td>10662.481428</td>
+<td>std</td>
+<td>0.0</td>
+<td>11508.703991</td>
+</tr>
+<tr>
+<td>min</td>
+<td>1.0</td>
+<td>224.000000</td>
+<td>min</td>
+<td>1.0</td>
+<td>320.000000</td>
+</tr>
+<tr>
+<td>25%</td>
+<td>1.0</td>
+<td>5817.000000</td>
+<td>25%</td>
+<td>1.0</td>
+<td>5214.500000</td>
+</tr>
+<tr>
+<td>50%</td>
+<td>1.0</td>
+<td>10959.000000</td>
+<td>50%</td>
+<td>1.0</td>
+<td>11336.500000</td>
+</tr>
+<tr>
+<td>75%</td>
+<td>1.0</td>
+<td>17635.000000</td>
+<td>75%</td>
+<td>1.0</td>
+<td>16734.000000</td>
+</tr>
+<tr>
+<td>max</td>
+<td>1.0</td>
+<td>73946.000000</td>
+<td>max</td>
+<td>1.0</td>
+<td>78987.000000</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Description of the Test &amp; Training Data <em>(Post-Outlier-Handling):</em></p>
+<table>
+<thead>
+<tr>
+<th>TRAINING</th>
+<th>TARGET_BAD_FLAG</th>
+<th>TARGET_LOSS_AMT</th>
+<th>TEST</th>
+<th>TARGET_BAD_FLAG</th>
+<th>TARGET_LOSS_AMT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>941.0</td>
+<td>941.000000</td>
+<td>count</td>
+<td>248.0</td>
+<td>248.000000</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>1.0</td>
+<td>13400.475027</td>
+<td>mean</td>
+<td>1.0</td>
+<td>13264.209677</td>
+</tr>
+<tr>
+<td>std</td>
+<td>0.0</td>
+<td>10558.757161</td>
+<td>std</td>
+<td>0.0</td>
+<td>10902.351601</td>
+</tr>
+<tr>
+<td>min</td>
+<td>1.0</td>
+<td>224.000000</td>
+<td>min</td>
+<td>1.0</td>
+<td>320.000000</td>
+</tr>
+<tr>
+<td>25%</td>
+<td>1.0</td>
+<td>5817.000000</td>
+<td>25%</td>
+<td>1.0</td>
+<td>5214.500000</td>
+</tr>
+<tr>
+<td>50%</td>
+<td>1.0</td>
+<td>10959.000000</td>
+<td>50%</td>
+<td>1.0</td>
+<td>11336.500000</td>
+</tr>
+<tr>
+<td>75%</td>
+<td>1.0</td>
+<td>17635.000000</td>
+<td>75%</td>
+<td>1.0</td>
+<td>16734.000000</td>
+</tr>
+<tr>
+<td>max</td>
+<td>1.0</td>
+<td>60000.000000</td>
+<td>max</td>
+<td>1.0</td>
+<td>60000.000000</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="2-tensorflow-model-to-predict-loan-default">2. TensorFlow Model to Predict Loan Default</h2>
+<h3 id="21-classification-tensorflow-models-using-varying-activation-functions">2.1 Classification TensorFlow Models Using Varying Activation Functions</h3>
+<p><strong><u>Description of the 3 Different Activation Function TensorFlow Models:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model 1</td>
+<td><em>One Hidden Layer w/ ReLU Activation Function</em></td>
+</tr>
+<tr>
+<td>Model 2</td>
+<td><em>One Hidden Layer w/ Sigmoid Activation Function</em></td>
+</tr>
+<tr>
+<td>Model 3</td>
+<td><em>One Hidden Layer w/ Tanh Activation FUnction</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>ROC Curves for the 3 Different Activation Function TensorFlow Models:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Model 1 (ReLU)</th>
+<th>Model 2 (Sigmoid)</th>
+<th>Model 3 (Tanh)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="U4_Plots/Model1.png" alt="alt text"></td>
+<td><img src="U4_Plots/Model2.png" alt="alt text"></td>
+<td><img src="U4_Plots/Model3.png" alt="alt text"></td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>Classification Accuracy for the 3 Different Activation Function TensorFlow Models:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Training Accuracy</th>
+<th>Test Accuracy</th>
+<th>AUC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model 1 (ReLU)</td>
+<td>0.937</td>
+<td>0.908</td>
+<td>0.92</td>
+</tr>
+<tr>
+<td>Model 2 (Sigmoid)</td>
+<td>0.898</td>
+<td>0.883</td>
+<td>0.90</td>
+</tr>
+<tr>
+<td>Model 3 (Tanh)</td>
+<td>0.914</td>
+<td>0.898</td>
+<td>0.91</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Out of the three activation functions tested, <strong>ReLU</strong> produced the best results, so we will proceed with this activation function for the hidden and dropped layer testing and variable selection testing.</p>
+</blockquote>
+<h3 id="22-classification-tensorflow-models-using-varying-hidden-and-dropped-layers">2.2 Classification TensorFlow Models Using Varying Hidden and Dropped Layers</h3>
+<p><strong><u>Description of the different classification models:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model 1</td>
+<td><em>One Hidden Layer w/ ReLU Activation Function</em></td>
+</tr>
+<tr>
+<td>Model 2</td>
+<td><em>One Hidden Layer w/ Sigmoid Activation Function</em></td>
+</tr>
+<tr>
+<td>Model 3</td>
+<td><em>One Hidden Layer w/ Tanh Activation FUnction</em></td>
+</tr>
+<tr>
+<td><strong>Model 4</strong></td>
+<td><em>Two Hidden Layers w/ ReLU Activation Function</em></td>
+</tr>
+<tr>
+<td><strong>Model 5</strong></td>
+<td><em>Two Hidden Layers + One Dropped Layer w/ ReLU Activation Function</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>ROC Curves for the New Models &amp; Comparison of All Tensorflow Classification Models:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Model 1 (<em>1 Hidden &amp; ReLU</em>)</th>
+<th>Model 4 (<em>2 Hidden &amp; ReLU</em>)</th>
+<th>Model 5 (*2 Hidden &amp; 1 Dropped &amp; ReLU)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="U4_Plots/Model1.png" alt="alt text"></td>
+<td><img src="U4_Plots/Model4.png" alt="alt text"></td>
+<td><img src="U4_Plots/Model5.png" alt="alt text"></td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>Classification Accuracy for the Varying Hidden and Dropped Layer TensorFlow Models:</u></strong>=</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Training Accuracy</th>
+<th>Test Accuracy</th>
+<th>AUC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model 1 (<em>1 Hidden &amp; ReLU</em>)</td>
+<td>0.937</td>
+<td>0.908</td>
+<td>0.92</td>
+</tr>
+<tr>
+<td>Model 4 (<em>2 Hidden &amp; ReLU</em>)</td>
+<td>0.973</td>
+<td>0.917</td>
+<td>0.93</td>
+</tr>
+<tr>
+<td>Model 5 (<em>2 Hidden &amp; 1 Dropped &amp; ReLU</em>)</td>
+<td>0.952</td>
+<td>0.920</td>
+<td>0.94</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-comparing-the-results-from-the-5-classification-tensorflow-models-created-thus-far">2.3 Comparing the Results from the 5 Classification TensorFlow Models Created Thus Far</h3>
+<p><strong><u>ROC Curves of All 5 Models Created</u></strong></p>
+<p><img src="U4_Plots/All_5_Models_ROCs.png" alt="alt text"></p>
+<blockquote>
+<p><strong>Model 5</strong>, which has 2 hidden layers and 1 dropped layer using the ReLU activation function, performs the best out of the 5 models created. Therefore, this is the model we will use in the next step for variable selection testing.</p>
+</blockquote>
+<h3 id="24-exploring-tensorflow-classification-model-through-variable-selection-testing">2.4 Exploring TensorFlow Classification Model Through Variable Selection Testing</h3>
+<p>The Variables selections that will be used include:</p>
+<ol>
+<li>Decision Tree Variables</li>
+<li>Random Forest Variables</li>
+<li>Gradient Boosting Variables</li>
+</ol>
+<blockquote>
+<p>All variable selection tests will be applied to Model 5</p>
+</blockquote>
+<p><strong><u>ROC Curves for the Variable Selection TensorFlow Classification Models:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Model 5 - Decision Tree Variables</th>
+<th>Model 5 - Random Forest Variables</th>
+<th>Model 5 - Gradient Boosting Variables</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="U4_Plots/M5_DF.png" alt="alt text"></td>
+<td><img src="U4_Plots/M5_RF.png" alt="alt text"></td>
+<td><img src="U4_Plots/M5_GB.png" alt="alt text"></td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>Classification Accuracy for the Different Variable Selection TensorFlow Models:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Training Accuracy</th>
+<th>Test Accuracy</th>
+<th>AUC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model 5 - Decision Tree Variables</td>
+<td>0.893</td>
+<td>0.878</td>
+<td>0.90</td>
+</tr>
+<tr>
+<td>Model 5 - Random Forest Variables</td>
+<td>0.916</td>
+<td>0.889</td>
+<td>0.92</td>
+</tr>
+<tr>
+<td>Model 5 - Gradient Boosting Variables</td>
+<td>0.903</td>
+<td>0.897</td>
+<td>0.92</td>
+</tr>
+</tbody>
+</table>
+<p><strong><u>ROC Curves of All 3 Variable Selection Methods:</u></strong></p>
+<p><img src="U4_plots/All_3_VSMs.png" alt="alt text"></p>
+<hr>
+<h2 id="3-tensorflow-model-to-predict-loss-given-default">3. TensorFlow Model to Predict Loss Given Default</h2>
+<h3 id="31-regression-tensorflow-models-to-predict-loan-default-amount-using-varying-activation-functions">3.1 Regression TensorFlow Models to Predict Loan Default Amount Using Varying Activation Functions</h3>
+<p><strong><u>Regression Accuracy for the 3 Different Activation Function TensorFlow Models:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Training RMSE</th>
+<th>Test RMSE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model 1 (ReLU)</td>
+<td>11342.7</td>
+<td>10737.1</td>
+</tr>
+<tr>
+<td>Model 2 (Sigmoid)</td>
+<td>16977.1</td>
+<td>16080.8</td>
+</tr>
+<tr>
+<td>Model 3 (Tanh)</td>
+<td>16969.3</td>
+<td>16073.2</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Out of the three activation functions tested, <strong>ReLU</strong> again produced the best results, so we will proceed with this activation function for the hidden and dropped layer testing and variable selection testing for the regression TensorFlow models.</p>
+</blockquote>
+<h3 id="32-regression-tensorflow-models-to-predict-loan-default-amount-using-varying-hidden-and-dropped-layers">3.2 Regression TensorFlow Models to Predict Loan Default Amount Using Varying Hidden and Dropped Layers</h3>
+<p><strong><u>Regression Accuracy for the Varying Hidden and Dropped Layer TensorFlow Models:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Training RMSE</th>
+<th>Test RMSE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model 1 (<em>1 Hidden &amp; ReLU</em>)</td>
+<td>11342.7</td>
+<td>10737.1</td>
+</tr>
+<tr>
+<td>Model 4 (<em>2 Hidden &amp; ReLU</em>)</td>
+<td>4922.3</td>
+<td>6309.0</td>
+</tr>
+<tr>
+<td>Model 5 (<em>2 Hidden &amp; 1 Dropped &amp; ReLU</em>)</td>
+<td>5085.2</td>
+<td>6402.3</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-comparing-the-results-from-the-5-regression-tensorflow-models-created-thus-far">3.3 Comparing the Results from the 5 Regression TensorFlow Models Created Thus Far</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Accuracy Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model 4</td>
+<td>6308.992203455266</td>
+</tr>
+<tr>
+<td>Model 5</td>
+<td>6402.3219995726895</td>
+</tr>
+<tr>
+<td>Model 1</td>
+<td>10737.151033346185</td>
+</tr>
+<tr>
+<td>Model 3</td>
+<td>16073.230150151237</td>
+</tr>
+<tr>
+<td>Model 2</td>
+<td>16080.75033068635</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Model 4, which utilizes the ReLU activation function with 2 hidden layers, has the lowest RMSE score and thus performs the best. Therefore, we will use this model for the variable selection testing.</p>
+</blockquote>
+<h3 id="34-exploring-tensorflow-regression-model-through-variable-selection-testing">3.4 Exploring TensorFlow Regression Model Through Variable Selection Testing</h3>
+<p>The Variables selections that will be used include:</p>
+<ol>
+<li>Decision Tree Variables</li>
+<li>Random Forest Variables</li>
+<li>Gradient Boosting Variables</li>
+</ol>
+<blockquote>
+<p>All variable selection tests will be applied to Model 4</p>
+</blockquote>
+<p><strong><u>Regression Accuracy for the Different Variable Selection TensorFlow Models:</u></strong></p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Training RMSE</th>
+<th>Test RMSE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model 4 - All Variables</td>
+<td>4922.3</td>
+<td>6309.0</td>
+</tr>
+<tr>
+<td>Model 4 - Decision Tree Variables</td>
+<td>10289.0</td>
+<td>10106.9</td>
+</tr>
+<tr>
+<td>Model 4 - Random Forest Variables</td>
+<td>8461.1</td>
+<td>8470.5</td>
+</tr>
+<tr>
+<td>Model 4 - Gradient Boosting Variables</td>
+<td>8685.8</td>
+<td>8670.7</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Besides including all variables, the best variable selection method for Model 4 is using <strong>Random Forest Variables</strong>.</p>
+</blockquote>
+<h2 id="4-comparing-all-classification-and-regression-models">4. Comparing All Classification and Regression Models</h2>
+<h3 id="41-comparing-all-classification-models-for-predicting-the-probability-of-loan-default">4.1 Comparing All Classification Models for Predicting the Probability of Loan Default</h3>
+<p><img src="U4_plots/All_ROCs.png" alt="alt text"></p>
+<blockquote>
+<p>Based on the results shown in the graph illustrating the ROC curves for all the Machine Learning classification models created thus far, the most accurate overall model is the <strong>Random Forest Model</strong>, with an Area Under the Curve (AUC) of 0.96. The next best model that doesn't use all the available variables is the <em>Gradient Boosting Model</em> (AUC = 0.94), followed by the <em>TensorFlow model using the Gradient Boosting Variables, two hidden layers, and one dropped later</em> (AUC = 0.92). Therefore, I recommend using a Random Forest model to predict the probability that a borrower will default on their loan.</p>
+</blockquote>
+<h3 id="42-comparing-all-regression-models-for-predicting-the-amount-lost-upon-loan-default">4.2 Comparing All Regression Models for Predicting the Amount Lost Upon Loan Default</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Accuracy Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gradient Boosting</td>
+<td>3789.6429503942113</td>
+</tr>
+<tr>
+<td>Random Forest</td>
+<td>4011.315812306893</td>
+</tr>
+<tr>
+<td>Regression - All Variables</td>
+<td>4288.014541011649</td>
+</tr>
+<tr>
+<td>Regression - Random Forest Variables</td>
+<td>4665.7087337961075</td>
+</tr>
+<tr>
+<td>Regression - Gradient Boosting Variables</td>
+<td>4665.7087337961075</td>
+</tr>
+<tr>
+<td>Regression - Decision Tree Variables</td>
+<td>5223.300119525708</td>
+</tr>
+<tr>
+<td>TensorFlow - Model #4 (All Variables)</td>
+<td>6308.992203455266</td>
+</tr>
+<tr>
+<td>Decision Tree</td>
+<td>6324.31679426072</td>
+</tr>
+<tr>
+<td>TensorFlow - Model #4 (Random Forest Variables)</td>
+<td>8470.461517033104</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>To predict the amount lost upon loan default, the most accurate overall model is the <strong>Gradient Boosting Model</strong>, with a Root Mean Squared Error (RMSE) score of 3789.6. The TensorFlow Regression Models perform poorly compared to all other Machine Learning models besides the Decision Tree model, with the TensorFlow model using Random Forest variables and two hidden layers performing the worst out of all models (RMSE = 8470.46).</p>
+</blockquote>
+
+</body>
+</html>

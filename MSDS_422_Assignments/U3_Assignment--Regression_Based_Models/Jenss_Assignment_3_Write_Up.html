@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jenss_Assignment_3_Write_Up.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="assignment-3-unit-3-regression-based-modules">Assignment 3 (Unit 3): Regression-Based Modules</h1>
+<p><strong>MSDS 422: Machine Learning</strong> <br>
+<strong>Author:</strong> Stefan Jenss <br>
+<strong>Instructor:</strong> Donald Wedding, PhD <br>
+<strong>Date:</strong> February 11th, 2023 <br></p>
+<h2 id="phase-1-create-a-training-and-test-data-set">Phase 1: Create a Training and Test Data Set</h2>
+<blockquote>
+<p>Same as the previous assignment</p>
+</blockquote>
+<ol>
+<li>Splitting the Data
+<ul>
+<li>
+<p>We created an 80/20% split of the data into training and test data. <br></p>
+<blockquote>
+<p>Output: <br>
+FLAG DATA <br>
+TRAINING =  (4768, 32) <br>
+TESTING =  (1192, 32) <br></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>Handling of Outliers
+For the handling of outliers for these models, we will consider outliers to be entries with a <code>TARGET_LOSS_AMT</code> value greater than $60,000.
+<ul>
+<li>
+<p>Description of Test &amp; Training Data <em>(Pre-Outlier-Handing):</em></p>
+<table>
+<thead>
+<tr>
+<th>TRAINING</th>
+<th>TARGET_BAD_FLAG</th>
+<th>TARGET_LOSS_AMT</th>
+<th>TEST</th>
+<th>TARGET_BAD_FLAG</th>
+<th>TARGET_LOSS_AMT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>941.0</td>
+<td>941.000000</td>
+<td>count</td>
+<td>248.0</td>
+<td>248.000000</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>1.0</td>
+<td>13421.645058</td>
+<td>mean</td>
+<td>1.0</td>
+<td>13387.758065</td>
+</tr>
+<tr>
+<td>std</td>
+<td>0.0</td>
+<td>10662.481428</td>
+<td>std</td>
+<td>0.0</td>
+<td>11508.703991</td>
+</tr>
+<tr>
+<td>min</td>
+<td>1.0</td>
+<td>224.000000</td>
+<td>min</td>
+<td>1.0</td>
+<td>320.000000</td>
+</tr>
+<tr>
+<td>25%</td>
+<td>1.0</td>
+<td>5817.000000</td>
+<td>25%</td>
+<td>1.0</td>
+<td>5214.500000</td>
+</tr>
+<tr>
+<td>50%</td>
+<td>1.0</td>
+<td>10959.000000</td>
+<td>50%</td>
+<td>1.0</td>
+<td>11336.500000</td>
+</tr>
+<tr>
+<td>75%</td>
+<td>1.0</td>
+<td>17635.000000</td>
+<td>75%</td>
+<td>1.0</td>
+<td>16734.000000</td>
+</tr>
+<tr>
+<td>max</td>
+<td>1.0</td>
+<td>73946.000000</td>
+<td>max</td>
+<td>1.0</td>
+<td>78987.000000</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Description of the Test &amp; Training Data <em>(Post-Outlier-Handling):</em></p>
+<table>
+<thead>
+<tr>
+<th>TRAINING</th>
+<th>TARGET_BAD_FLAG</th>
+<th>TARGET_LOSS_AMT</th>
+<th>TEST</th>
+<th>TARGET_BAD_FLAG</th>
+<th>TARGET_LOSS_AMT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>941.0</td>
+<td>941.000000</td>
+<td>count</td>
+<td>248.0</td>
+<td>248.000000</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>1.0</td>
+<td>13400.475027</td>
+<td>mean</td>
+<td>1.0</td>
+<td>13264.209677</td>
+</tr>
+<tr>
+<td>std</td>
+<td>0.0</td>
+<td>10558.757161</td>
+<td>std</td>
+<td>0.0</td>
+<td>10902.351601</td>
+</tr>
+<tr>
+<td>min</td>
+<td>1.0</td>
+<td>224.000000</td>
+<td>min</td>
+<td>1.0</td>
+<td>320.000000</td>
+</tr>
+<tr>
+<td>25%</td>
+<td>1.0</td>
+<td>5817.000000</td>
+<td>25%</td>
+<td>1.0</td>
+<td>5214.500000</td>
+</tr>
+<tr>
+<td>50%</td>
+<td>1.0</td>
+<td>10959.000000</td>
+<td>50%</td>
+<td>1.0</td>
+<td>11336.500000</td>
+</tr>
+<tr>
+<td>75%</td>
+<td>1.0</td>
+<td>17635.000000</td>
+<td>75%</td>
+<td>1.0</td>
+<td>16734.000000</td>
+</tr>
+<tr>
+<td>max</td>
+<td>1.0</td>
+<td>60000.000000</td>
+<td>max</td>
+<td>1.0</td>
+<td>60000.000000</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="phase-2-evaluating-the-previously-created-ml-modules-from-assignment-2">Phase 2: Evaluating The Previously Created M.L. Modules from Assignment 2</h2>
+<blockquote>
+<p>We want to evaluate the previously created M.L. modules from Assignment 2 to compare their results to the Logistic Regression and Linear Regression modules we will create in this assignment.</p>
+</blockquote>
+<h3 id="21-default-probability-rocs-for-the-previously-created-ml-modules">2.1 Default Probability ROCs for the Previously Created ML Modules:</h3>
+<div style="display: flex;">
+<img src="Decision_Tree_ROC.png" alt="Image 1" style="width: 33.33%;">
+<img src="Random_Forest_ROC.png" alt="Image 2" style="width: 33.33%;">
+<img src="Gradient_Boosting_ROC.png" alt="Image 2" style="width: 33.33%;">
+</div>
+<h3 id="22-default-probability-classification-accuracy-scores-for-the-previously-created-ml-modules">2.2 Default Probability Classification Accuracy Scores for the Previously Created ML Modules</h3>
+<table>
+<thead>
+<tr>
+<th>Accuracy Scores</th>
+<th>Decision Tree</th>
+<th>Random Forest</th>
+<th>Gradient Boosting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Training Score</td>
+<td>0.8873741610738255</td>
+<td>0.9997902684563759</td>
+<td>0.9259647651006712</td>
+</tr>
+<tr>
+<td>Test Score</td>
+<td>0.8825503355704698</td>
+<td>0.9161073825503355</td>
+<td>0.9068791946308725</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>For the previous ML models created, the <strong>Random Forest</strong> model performed the best at predicting the probability of default, with a 0.96 AUC and 0.916 accuracy score.</li>
+</ul>
+<h3 id="23-amount-lost-assuming-default-rmse-scores-for-the-previously-created-ml-modules">2.3 Amount Lost Assuming Default RMSE Scores for the Previously Created ML Modules</h3>
+<table>
+<thead>
+<tr>
+<th>RMSE Scores</th>
+<th>Decision Tree</th>
+<th>Random Forest</th>
+<th>Gradient Boosting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Training Score</td>
+<td>4376.115301768929</td>
+<td>1215.1036374284365</td>
+<td>1216.8745387135345</td>
+</tr>
+<tr>
+<td>Test Score</td>
+<td>5300.687819418662</td>
+<td>2725.840164535692</td>
+<td>2272.6913845727468</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>For the previous ML models created, the <strong>Gradient Boosting</strong> model best predicted the amount lost assuming default, with an RMSE score of 2272.7.</li>
+</ul>
+<hr>
+<h2 id="phase-3-developing-logistic-regression">Phase 3: Developing Logistic Regression</h2>
+<blockquote>
+<p>We will evaluate logistic regression models using the following variable selection:</p>
+<ul>
+<li>All Variable</li>
+<li>Decision Tree Variables</li>
+<li>Random Forest Variables</li>
+<li>Gradient Boosting Variables</li>
+<li>Stepwise Selection Variables</li>
+</ul>
+</blockquote>
+<h3 id="31-default-probability-rocs-for-logistic-regression-models">3.1 Default Probability ROCs for Logistic Regression Models:</h3>
+<div style="display: flex;">
+<div style="width: 100%;">
+<img src="Regression_All_Variables_ROC.png" alt="Image 1" style="width: 100%;">
+<img src="Regression_Gradient_Boosting_ROC.png" alt="Image 4" style="width: 100%;">
+</div>
+<div style="width: 100%;">
+<img src="Regression_Decision_Tree_ROC.png" alt="Image 2" style="width: 100%;">
+<img src="Regression_Stepwise_Selection_ROC.png" alt="Image 5" style="width: 100%;">
+</div>
+<div style="width: 100%;">
+<img src="Regression_Random_Forest_ROC.png" alt="Image 3" style="width: 100%;">
+<img src="All_Classification_Models_ROC.png" alt="Image 6" style="width: 100%;">
+</div>
+</div>
+<h3 id="32-default-probability-accuracies-for-logistic-regression-models">3.2 Default Probability Accuracies for Logistic Regression Models:</h3>
+<table>
+<thead>
+<tr>
+<th>Variable Selection Method</th>
+<th>Training Accuracy Score</th>
+<th>Test Accuracy Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Regression - All Variables</td>
+<td>0.8934563758389261</td>
+<td>0.889261744966443</td>
+</tr>
+<tr>
+<td>Regression - Decision Tree</td>
+<td>0.8754194630872483</td>
+<td>0.8741610738255033</td>
+</tr>
+<tr>
+<td>Regression - Random Forest</td>
+<td>0.8798238255033557</td>
+<td>0.8741610738255033</td>
+</tr>
+<tr>
+<td>Regression - Gradient Boosting</td>
+<td>0.8812919463087249</td>
+<td>0.8800335570469798</td>
+</tr>
+<tr>
+<td>Regression - Stepwise Selection</td>
+<td>0.8754194630872483</td>
+<td>0.8741610738255033</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Amoung the Logistic Regression Model the used, the Logistic Regression using Gradient Boosting variables was the most accurate, with an accuracy score of 0.88 and an AUC of 0.87. However, the previously created Random Forest model with an accuracy score of 0.916 and AUC of 0.96 still remains the most accurate model; therefore, I recommend the <strong>Random Forest</strong> model for predicting whether a loan will default.</p>
+</blockquote>
+<h3 id="321-variables-used-in-each-logistic-regression-model">3.2.1 Variables Used in Each Logistic Regression Model:</h3>
+<table>
+<thead>
+<tr>
+<th>Variable Selection Method</th>
+<th>Variables Used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Regression - All Variables</td>
+<td>All 33 variables were used for this model</td>
+</tr>
+<tr>
+<td>Regression - Decision Tree</td>
+<td>INTERCEPT, M_DEPTINC, IMP_DEBTINC, M_DEROG, IMP_DELINQ, IMP_CLAGE</td>
+</tr>
+<tr>
+<td>Regression - Random Forest</td>
+<td>INTERCEPT, M_DEBTINC, IMP_DEBTINC, IMP_DELINQ, IMP_CLAGE, IMP_LOAN, IMP_CALUE, IMP_CLNO, IMP_MORTDUE, IMP_YOJ, IMP_DEROG, IMP_NINQ</td>
+</tr>
+<tr>
+<td>Regression - Gradient Boosting</td>
+<td>INTERCEPT, M_DEBTINC, IMP_DEBTINC, IMP_DELINQ, IMP_CLAGE, M_VALUE, IMP_DEROG</td>
+</tr>
+<tr>
+<td>Regression - Stepwise Selection</td>
+<td>INTERCEPT, M_DEBTINC, IMP_DEBTINC, M_DEROG, IMP_DELINQ, IMP_CLAGE</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-examining-coefficients-for-gradient-boosting-logistic-regression-model">3.3 Examining Coefficients for Gradient Boosting Logistic Regression Model</h3>
+<p>There were <strong>7</strong> total variables used for the Logistic Regression Model using the <strong>Gradient Boosting</strong> variables
+These included:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Coefficient</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INTERCEPT</td>
+<td>-5.432779</td>
+</tr>
+<tr>
+<td>M_DEBTINC</td>
+<td>2.753325</td>
+</tr>
+<tr>
+<td>IMP_DEBTINC</td>
+<td>0.099528</td>
+</tr>
+<tr>
+<td>IMP_DELINQ</td>
+<td>0.646958</td>
+</tr>
+<tr>
+<td>IMP_CLAGE</td>
+<td>-0.006143</td>
+</tr>
+<tr>
+<td>M_VALUE</td>
+<td>3.526238</td>
+</tr>
+<tr>
+<td>IMP_DEROG</td>
+<td>0.575937</td>
+</tr>
+</tbody>
+</table>
+<p>All of the variables make sense for why they would predict whether a loan will default because they are likely indicators of fraud. The variables with the most significant coefficients are whether or not the person is missing a debt-to-income ratio and whether the value of the person’s own is missing. These two important values being missing are very suspicious, and these large coefficients support that. It also makes sense that as a borrower's number of credit delinquencies and derogatory marks increases, so does their likelihood of default. Additionally, it is unsurprising that the age of a borrower's credit line has a negative coefficient since the longer a person has a line of credit, the more experience they have managing debt.</p>
+<hr>
+<h2 id="phase-4-developing-linear-regression">Phase 4: Developing Linear Regression</h2>
+<blockquote>
+<p>We will evaluate linear regression models using the same variable selection methods as for the linear regression.</p>
+</blockquote>
+<h3 id="41-amount-lost-assuming-default-rmse-scores-for-linear-regression-models">4.1 Amount Lost Assuming Default RMSE Scores for Linear Regression Models:</h3>
+<table>
+<thead>
+<tr>
+<th>Variable Selection Method</th>
+<th>Training RMSE Score</th>
+<th>Test RMSE Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Regression - All Variables</td>
+<td>3578.3595491074625</td>
+<td>3213.6502698249487</td>
+</tr>
+<tr>
+<td>Regression - Decision Tree</td>
+<td>4448.604572853346</td>
+<td>4329.837423823597</td>
+</tr>
+<tr>
+<td>Regression - Random Forest</td>
+<td>4546.38193698269</td>
+<td>4416.2363896732695</td>
+</tr>
+<tr>
+<td>Regression - Gradient Boosting</td>
+<td>4546.38193698269</td>
+<td>4416.2363896732695</td>
+</tr>
+<tr>
+<td>Regression - Stepwise Selection</td>
+<td>4546.38193698269</td>
+<td>4416.2363896732695</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Among the Linear Regression models created, the Linear Regression using the Decision Tree variables was the most accurate, with an RMSE Score of 4329.8. This is not surprising given that the decision tree linear regression model utilized the largest number of variables (6 versus 3 for all the others). Using a model with 6 variables is also much more feasible than a model with all 33 variables. However, the previously created <strong>Gradient Boosting</strong> model is still much more accurate than the Linear Regression using Decision Tree variables, with an RMSE score of 2272.7; therefore, I would recommend using the <strong>Gradient Boosting</strong> model for predicting the amount lost assuming default.</p>
+</blockquote>
+<h3 id="411-variables-used-in-each-linear-regression-model">4.1.1 Variables Used in Each Linear Regression Model:</h3>
+<table>
+<thead>
+<tr>
+<th>Variable Selection Method</th>
+<th>Variables Used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Regression - All Variables</td>
+<td>All 33 variables were used for this model</td>
+</tr>
+<tr>
+<td>Regression - Decision Tree</td>
+<td>INTERCEPT, IMP_LOAN, M_DEBTINC, IMP_NINQ, IMP_CLNO, z_IMP_REASON_DebtCon</td>
+</tr>
+<tr>
+<td>Regression - Random Forest</td>
+<td>INTERCEPT, IMP_LOAN, IMP_CLNO, M_DEBTINC</td>
+</tr>
+<tr>
+<td>Regression - Gradient Boosting</td>
+<td>INTERCEPT, IMP_LOAN, IMP_CLNO, M_DEBTINC</td>
+</tr>
+<tr>
+<td>Regression - Stepwise Selection</td>
+<td>INTERCEPT, IMP_LOAN, IMP_CLNO, M_DEBTINC</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-examining-coefficients-for-decision-tree-linear-regression-model">4.2 Examining Coefficients for Decision Tree Linear Regression Model</h3>
+<p>There were <strong>6</strong> total variables used for the Linear Regression Model using the <strong>Decision Tree</strong> variables
+These included:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Coefficient</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INTERCEPT</td>
+<td>-4.889730</td>
+</tr>
+<tr>
+<td>M_DEBTINC</td>
+<td>2.819198</td>
+</tr>
+<tr>
+<td>IMP_DEBTINC</td>
+<td>0.092259</td>
+</tr>
+<tr>
+<td>M_DEROG</td>
+<td>-0.803461</td>
+</tr>
+<tr>
+<td>IMP_DELINQ</td>
+<td>0.736207</td>
+</tr>
+<tr>
+<td>IMP_CLAGE</td>
+<td>-0.006332</td>
+</tr>
+</tbody>
+</table>
+<p>All of the variables included in the linear regression model using the Decision Tree variables make sense.</p>
+<ul>
+<li>Missing Debt-to-Income Ratio (2.82): It is suspicious if someone does not have this information, and thus, it makes sense that this has a large coefficient.</li>
+<li>Number of Delinquencies on Current Credit Report (0.74): It is unsurprising that someone with a large number of delinquencies would be more likely to lose a large amount upon default.</li>
+<li>Debt-to-Income Ratio (0.09): This makes sense; however, I'm surprised that this coefficient is not large; it would seem that someone with significantly more debt than income would have a more difficult time paying off the loan and thus would default on a large amount. We should consult with an industry expert regarding this.</li>
+<li>Missing Derogatory (-0.80): I would assume that if someone's number of derogatory marks is missing, that would indicate they likely don't have a history of derogatory marks, and thus this coefficient would make sense. Should consult with industry experts to confirm that this interpretation is correct.</li>
+<li>Credit Line Age (-0.01): I'm not surprised that this variable is included, and it makes sense that this coefficient would be negative for the reason previously stated in Section 3.3.</li>
+<li>NOTE: I am surprised to see that <code>LOAN</code> (The Home Equity Line of Credit Amount) is not included in the variables used to predict the amount lost upon default. It would make sense that the larger the line of credit, the larger the loss upon default. Consult an industry expert to see if the omission of this variable is appropriate.</li>
+</ul>
+
+</body>
+</html>
